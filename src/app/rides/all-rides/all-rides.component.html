@@ -1,0 +1,157 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header >
+      <mat-panel-title fxLayoutAlign="center center">
+        <button mat-raised-button color="primary">Search for a ride</button>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-horizontal-stepper #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Ride name</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Ride name" formControlName="firstCtrl" (keyup)="doFilter($event.target.value)">
+          </mat-form-field>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup" >
+        <form [formGroup]="secondFormGroup" fxLayoutGap="20px">
+          <ng-template matStepLabel>Time of departure</ng-template>
+          <mat-form-field >
+            <input matInput [matDatepicker]="picker" placeholder="Search by date of departure" formControlName="secondCtrl" (keyup)="doFilter($event.target.value)">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <ng5-slider [(value)]="value" [(highValue)]="highValue" [options]="options"></ng5-slider>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Starting location</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Starting location" formControlName="thirdCtrl" (keyup)="doFilter($event.target.value)">
+          </mat-form-field>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="fourthFormGroup">
+        <form [formGroup]="fourthFormGroup">
+          <ng-template matStepLabel>Destination</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Destination" formControlName="fourthCtrl" (keyup)="doFilter($event.target.value)">
+          </mat-form-field>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="fifthFormGroup">
+        <form [formGroup]="fifthFormGroup">
+          <ng-template matStepLabel>Number of passengers</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Number of passengers" formControlName="fifthCtrl" (keyup)="doFilter($event.target.value)">
+          </mat-form-field>
+        </form>
+      </mat-step>
+      <!-- <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step> -->
+    </mat-horizontal-stepper>
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+<!-- <div fxLayoutAlign="center center">
+  <mat-form-field fxFlex="40%">
+      <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div> -->
+
+<mat-table [dataSource]="rideSource" matSort>
+    <ng-container matColumnDef="rideName" sticky>
+    <mat-header-cell *matHeaderCellDef mat-sort-header fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px" >
+      {{rideToggle ? 'All rides' : 'My rides'}}
+    <mat-slide-toggle [(ngModel)]="rideToggle"></mat-slide-toggle>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.rideName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="idDriver">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Driver's name</mat-header-cell>
+    <mat-cell *matCellDef="let element" routerLink="/profile" (click)="this.US.profileToShow=element.idDriver" >
+        <div fxLayoutAlign="center center" fxLayout="row">
+        <a href="javascript:;">{{ this.US.getNameById(element.idDriver) }}</a>
+        <mat-icon>stars</mat-icon>
+        {{this.US.getRatingById(element.idDriver)[0]}}
+        </div>
+    </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="timeOfDeparture">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Time of departure</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.timeOfDeparture | date }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="hourOfDeparture">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Hour of departure</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.hourOfDeparture | number }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="minuteOfDeparture">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Minute of departure</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.minuteOfDeparture | number }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="startingLocation">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Starting location</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.startingLocation }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="destination">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Destination</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+        <a href="https://www.google.com/maps/dir/Republic+Square,+Trg+republike,+Beograd+11000/Danijelova+32/" target="_blank">{{ element.destination }}</a>
+      
+    </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="passengers">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Passengers</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.passengers.length }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="maxPassengers">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Max passengers</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.maxPassengers | number }}</mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.status }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-raised-button color="accent" (click)="requestRide()">Go!</button>
+      <button *ngIf="this.US.getCurrentUser().typeOfUser=='Driver'" mat-raised-button color="warn" (click)="editRide()">Edit</button>
+    </mat-cell>
+    </ng-container>
+
+
+  <!-- <ng-container matColumnDef="duration">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Duration</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.duration | number }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="calories">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Calories</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.calories | number }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.status }}</mat-cell>
+  </ng-container> -->
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let rows; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator [pageSize]="10" [pageSizeOptions]="[5,10,20,50,100]"></mat-paginator>

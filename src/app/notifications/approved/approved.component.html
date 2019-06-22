@@ -1,0 +1,24 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title><font size="-1">Your ride has been approved: Prevoz studenata on Wed Jan 24 2019 15:15 from <a href="https://www.google.com/maps/dir/Republic+Square,+Trg+republike,+Beograd+11000/Danijelova+32/" target="_blank">Kalemegdan to Singidunum</a></font> </mat-card-title>
+    <mat-card-subtitle>
+    <div fxLayoutAlign="start center" fxLayout="row" routerLink="/profile" (click)="this.US.profileToShow=2">
+      <a href="javascript:;">{{ this.US.getNameById(2) }}</a>
+      <mat-icon>stars</mat-icon>
+      {{this.US.getRatingById(2)[0]}}
+    </div>
+    </mat-card-subtitle>
+  </mat-card-header>
+</mat-card>
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title><font size="-1">Your ride has been approved: test voznja on Wed Jan 24 2019 10:20 from <a href="https://www.google.com/maps/dir/Republic+Square,+Trg+republike,+Beograd+11000/Danijelova+32/" target="_blank">Trg Republike to Danijelova 32</a></font> </mat-card-title>
+      <mat-card-subtitle>
+      <div fxLayoutAlign="start center" fxLayout="row" routerLink="/profile" (click)="this.US.profileToShow=1">
+        <a href="javascript:;">{{ this.US.getNameById(1) }}</a>
+        <mat-icon>stars</mat-icon>
+        {{this.US.getRatingById(1)[0]}}
+      </div>
+      </mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>

@@ -1,20 +1,30 @@
-#container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-.child {
-    width: 200px;
-    height: 200px;
+mat-sidenav-container, mat-sidenav-content, mat-sidenav{
+    height: 100%
 }
 
-#child1 {
-    background-color: red;
+mat-sidenav {
+    width: 250px;
 }
-#child2 {
-    background-color: green;
+
+a {
+    color: white;
+    text-decoration: none;
 }
-#child3 {
-    background-color: blue;
+a:hover, a:active{
+    color: lightgray;
 }
+
+/* #container{
+    display: flex;
+    flex-direction: flex-start;
+    justify-content: center;
+    align-items: center; }
+.child{
+    width: 200px;
+    height: 200px; }
+#child1{
+    background-color: red;}
+#child2{
+    background-color: greenyellow;}
+#child3{
+    background-color: violet} */

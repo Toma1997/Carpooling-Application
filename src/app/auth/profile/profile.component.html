@@ -1,0 +1,248 @@
+<!-- <mat-form-field>
+  <input type="text" matInput placeholder="Address" [(ngModel)]="test" name="address"  required #adressInput="ngModel">
+</mat-form-field> -->
+
+
+<section fxLayoutAlign="center center" fxLayout="column">
+<mat-card class="example-card">
+  <mat-card-header class="profile" fxLayoutAlign="center center">
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{this.US.getProfileToShow().firstName}} {{this.US.getProfileToShow().lastName}}</mat-card-title>
+    <mat-card-subtitle>{{this.US.getProfileToShow().typeOfUser}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-actions *ngIf="this.US.getProfileToShow()==this.US.getCurrentUser()" fxLayoutAlign="center center">
+    <button mat-button *ngIf="!isEditing" mat-raised-button color="primary" (click)="isEditing=true">EDIT PROFILE</button>
+
+    <!-- <button mat-button>RATE</button> -->
+  </mat-card-actions>
+  <mat-divider></mat-divider>
+
+  <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+  <section *ngIf="!isEditing" class="profiledata">
+    <mat-card-header fxLayout="row" fxLayoutGap="10px">
+      <div>
+        <mat-icon>stars</mat-icon>
+      </div>
+      <div>
+        <mat-card-title>{{this.US.getRatingById(this.US.getProfileToShow().id)[0]}}</mat-card-title>
+        <mat-card-subtitle>{{this.US.getRatingById(this.US.getProfileToShow().id)[1]}} Ratings</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+
+    <mat-card-header fxLayout="row" fxLayoutGap="10px">
+      <div>
+        <mat-icon>email</mat-icon>
+      </div>
+      <div>
+        <mat-card-title>{{this.US.getProfileToShow().email}}</mat-card-title>
+        <mat-card-subtitle>Email</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+    <mat-card-header fxLayout="row" fxLayoutGap="10px">
+      <div>
+        <mat-icon>phone</mat-icon>
+      </div>
+      <div>
+        <mat-card-title>{{this.US.getProfileToShow().phone}}</mat-card-title>
+        <mat-card-subtitle>Phone</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+    <mat-card-header fxLayout="row" fxLayoutGap="10px">
+      <div>
+        <mat-icon>home</mat-icon>
+      </div>
+      <div>
+        <mat-card-title>{{this.US.getProfileToShow().address}}</mat-card-title>
+        <mat-card-subtitle>Address</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+
+
+    <h2>Comments:</h2>
+    <div fxLayoutAlign="flex-start" *ngFor="let item of this.US.getCommentsForId(this.US.getProfileToShow().id)">
+      <mat-card >{{item.comment}}
+        <div>
+          <font size="-1.5"> 
+            <a href="javascript:;" routerLink="/profile" (click)="this.US.profileToShow=item.idFrom">{{this.US.getNameById(item.idFrom)}}</a>, {{item.date}}</font>
+        </div>
+      </mat-card>
+    </div>
+    <form fxLayout="column" fxLayoutAlign="flex-start" fxLayoutGap="10px"
+    #f2="ngForm" (ngSubmit)="onComment(f2)">
+      <mat-form-field>
+        <textarea matInput placeholder="Add a comment" ngModel name="comment"  [(ngModel)]=comment required #commentInput="ngModel"></textarea>
+        <mat-error *ngIf="commentInput.hasError('required')">Comment can't be empty.</mat-error> 
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="primary" [disabled]="f2.invalid">
+        ADD COMMENT
+      </button>
+    </form>
+  </section>
+
+  <section *ngIf="isEditing" class="profiledataedit">
+  <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+  #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+  <mat-form-field appearance="outline">
+    <mat-label>First Name</mat-label>
+    <input type="text" matInput placeholder ngModel name="firstName" [(ngModel)]=firstName required #firstNameInput="ngModel"> 
+    <mat-icon matSuffix>account_circle</mat-icon>
+    <mat-error *ngIf="firstNameInput.hasError('required')">Please write Your first name.</mat-error> 
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Last Name</mat-label>
+    <input type="text" matInput placeholder ngModel name="lastName" [(ngModel)]=lastName required #lastNameInput="ngModel"> 
+    <mat-icon matSuffix>account_circle</mat-icon>
+    <mat-error *ngIf="lastNameInput.hasError('required')">Please write Your last name.</mat-error> 
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Your Email</mat-label>
+    <input type="email" matInput placeholder ngModel name="email" [(ngModel)]=email email required #emailInput="ngModel"> 
+    <mat-icon matSuffix>email</mat-icon>
+    <mat-error *ngIf="emailInput.hasError('required')">Field should not be empty.</mat-error>
+    <mat-error *ngIf="!emailInput.hasError('required')">Please use the correct email format.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" hintLabel="Click the eye to toggle visibility.">
+    <mat-label>Your Password</mat-label>
+    <input type="password" matInput placeholder [type]="hide ? 'password' : 'text'" ngModel name="password" [(ngModel)]=password required minlength="8" #passInput="ngModel">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> 
+    <mat-hint align="end">{{ passInput.value?.length }} /8 </mat-hint>
+  </mat-form-field>
+
+  <!-- <mat-form-field appearance="outline">
+    <mat-label>Your Password</mat-label>
+    <input type="password" matInput placeholder ngModel name="password" [(ngModel)]=password required minlength="8" #passInput="ngModel"> 
+    <mat-icon matSuffix>lock</mat-icon>
+    <mat-hint align="end">{{ passInput.value?.length }} /8 </mat-hint>
+  </mat-form-field> -->
+
+  <mat-form-field appearance="outline">
+    <mat-label>Mobile phone number</mat-label>
+    <input type="tel" matInput placeholder ngModel name="phone" [(ngModel)]=phone required #phoneInput="ngModel" minlength="6"> 
+    <mat-icon matSuffix>phone</mat-icon>
+    <mat-error *ngIf="phoneInput.hasError('required')">Please write Your mobile number.</mat-error>
+    <mat-error *ngIf="!phoneInput.hasError('required')">Your phone number is too short.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Address</mat-label>
+    <input type="text" matInput placeholder ngModel name="address" [(ngModel)]=address required #addressInput="ngModel"> 
+    <mat-icon matSuffix>home</mat-icon>
+    <mat-error *ngIf="addressInput.hasError('required')">Please write Your full address.</mat-error> 
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" floatPlaceholder="always" floatLabel="always" class="mat-form-field--no-underline">
+      <mat-label>Account type</mat-label>
+    <input matInput placeholder style="display: none">
+    <mat-radio-group ngModel name="typeOfUser" [(ngModel)]=typeOfUser required #typeOfUserInput="ngModel" fxLayout fxLayoutAlign="center" fxLayoutGap="20px">
+      <mat-radio-button value="Driver">Driver</mat-radio-button>
+      <mat-radio-button value="Passenger">Passenger</mat-radio-button>
+    </mat-radio-group>
+  </mat-form-field>
+
+
+  <!-- <mat-form-field hintLabel="This will be used for signing in.">
+      <input type="email" matInput placeholder="Your email" ngModel name="email" email required #emailInput="ngModel">
+      <mat-error *ngIf="emailInput.hasError('required')">Field should not be empty.</mat-error>
+      <mat-error *ngIf="!emailInput.hasError('required')">Please use the correct email format.</mat-error>
+    </mat-form-field> -->
+
+  <!-- <mat-form-field>
+    <input type="text" matInput placeholder="Last name" ngModel name="lastName" required #lastNameInput="ngModel">
+    <mat-error *ngIf="lastNameInput.hasError('required')">Please write Your last name.</mat-error>
+  </mat-form-field> -->
+  <div fxLayoutGap="20px" fxLayout="row" fxLayoutAlign="center center" >
+  <button mat-stroked-button color="primary" (click)="isEditing=false">
+    CANCEL CHANGES
+  </button>
+  <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">
+    UPDATE PROFILE
+  </button>
+  </div>
+  <!-- <font *ngIf="emailInUse" color="red">Email already in use. Please enter another email address!</font> -->
+  
+  </form>
+  </section>
+</mat-card>
+
+
+<!-- <mat-form-field appearance="outline">
+  <mat-label>Outline form field</mat-label>
+  <input matInput placeholder="Placeholder">
+  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  <mat-hint>Hint</mat-hint>
+</mat-form-field> -->
+
+
+
+</section>
+
+<!-- <section>
+  <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+  #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <font *ngIf="emailInUse" color="red">Email already in use. Please enter another email address!</font>
+    <mat-form-field hintLabel="This will be used for signing in.">
+      <input type="email" matInput placeholder="Your email" ngModel name="email" email required #emailInput="ngModel">
+      <mat-error *ngIf="emailInput.hasError('required')">Field should not be empty.</mat-error>
+      <mat-error *ngIf="!emailInput.hasError('required')">Please use the correct email format.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Please enter minimum 8 characters.">
+        <input type="password" matInput placeholder="Your password" ngModel name="password" required minlength="8" #passInput="ngModel">
+        <mat-hint align="end">{{ passInput.value?.length }} /8 </mat-hint>
+      </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="First name" ngModel name="firstName" [value]=this.US.getCurrentUser().firstName required #firstNameInput="ngModel" > 
+      <mat-error *ngIf="firstNameInput.hasError('required')">Please write Your first name.</mat-error> 
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="Last name" ngModel name="lastName" required #lastNameInput="ngModel">
+      <mat-error *ngIf="lastNameInput.hasError('required')">Please write Your last name.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="tel" matInput placeholder="Mobile phone number" ngModel name="phone" required #phoneInput="ngModel" minlength="6">
+      <mat-error *ngIf="phoneInput.hasError('required')">Please write Your mobile number.</mat-error>
+      <mat-error *ngIf="!phoneInput.hasError('required')">Your phone number is too short.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="Address" ngModel name="address" required #adressInput="ngModel">
+      <mat-error *ngIf="adressInput.hasError('required')">Please write Your full address.</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field floatPlaceholder="always" floatLabel="always" class="mat-form-field--no-underline">
+      <input matInput placeholder="Register as a: *" style="display: none">
+      <mat-radio-group ngModel name="typeOfUser" required #typeOfUserInput="ngModel" fxLayout fxLayoutAlign="center" fxLayoutGap="20px">
+        <mat-radio-button value="driver">Driver</mat-radio-button>
+        <mat-radio-button value="passenger">Passenger</mat-radio-button>
+      </mat-radio-group>
+    </mat-form-field>
+
+    <mat-checkbox color="primary" ngModel name="acceptance" required>
+      I accept the terms and conditions of use.
+    </mat-checkbox>
+
+    <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">
+      Update profile!
+    </button>
+  </form>
+</section>
+
+<section>
+<form class="example-form" fxLayout="column">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Favorite food" [value]=this.US.getCurrentUser().firstName>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="Leave a comment"></textarea>
+  </mat-form-field>
+</form>
+</section> -->

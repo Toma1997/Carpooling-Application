@@ -1,0 +1,28 @@
+<mat-card class="example-card">
+  <mat-card-header fxLayoutGap="5px">
+    <button mat-fab color="warn">Deny</button>
+    <button mat-fab color="accent">Approve</button>
+    <mat-card-title><font size="-1">Requested to join a ride: Prevoz studenata on Wed Jan 24 2019 15:15 from <a href="https://www.google.com/maps/dir/Republic+Square,+Trg+republike,+Beograd+11000/Danijelova+32/" target="_blank">Kalemegdan to Singidunum</a></font> </mat-card-title>
+    <mat-card-subtitle>
+    <div fxLayoutAlign="start center" fxLayout="row" routerLink="/profile" (click)="this.US.profileToShow=0">
+      <a href="javascript:;">{{ this.US.getNameById(0) }}</a>
+      <mat-icon>stars</mat-icon>
+      {{this.US.getRatingById(0)[0]}}
+    </div>
+    </mat-card-subtitle>
+  </mat-card-header>
+</mat-card>
+<mat-card class="example-card">
+  <mat-card-header fxLayoutGap="5px">
+    <button mat-fab color="warn">Deny</button>
+    <button mat-fab color="accent">Approve</button>
+    <mat-card-title><font size="-1">Requested to join a ride: Prevoz studenata on Wed Jan 24 2019 15:15 from <a href="https://www.google.com/maps/dir/Republic+Square,+Trg+republike,+Beograd+11000/Danijelova+32/" target="_blank">Kalemegdan to Singidunum</a></font> </mat-card-title>
+    <mat-card-subtitle>
+    <div fxLayoutAlign="start center" fxLayout="row" routerLink="/profile" (click)="this.US.profileToShow=1">
+      <a href="javascript:;">{{ this.US.getNameById(1) }}</a>
+      <mat-icon>stars</mat-icon>
+      {{this.US.getRatingById(1)[0]}}
+    </div>
+    </mat-card-subtitle>
+  </mat-card-header>
+</mat-card>

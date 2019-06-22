@@ -1,0 +1,18 @@
+<section fxFlex FxLayout="column" fxLayoutGap="10px">
+<div FxLayout="row">
+  <p>Rate Driver: Pera Peric</p> <ng5-slider [(value)]="value" [options]="options"></ng5-slider>
+</div>
+<div FxLayout="row">
+  <p>Rate Passenger: Mika Mikic</p> <ng5-slider [(value)]="value2" [options]="options"></ng5-slider>
+</div>
+<div FxLayout="row">
+    <p>Rate Passenger: Marko Petrovic</p> <ng5-slider [(value)]="value3" [options]="options"></ng5-slider>
+  </div>
+
+<mat-card-actions fxLayoutAlign="center" fxLayoutGap="10px">
+    <button type="submit" mat-stroked-button color="primary"
+    (click)="onClick()">CANCEL</button>
+    <button type="submit" mat-raised-button color="primary"
+    (click)="onClick()">OK</button>
+</mat-card-actions>
+</section>

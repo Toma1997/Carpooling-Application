@@ -1,0 +1,26 @@
+<mat-tab-group>
+    <mat-tab label="Sent">
+        <ng-template matTabLabel>
+            <span matBadge="1" matBadgeOverlap="false" [matBadgeHidden]="true" >Sent Requests</span>
+        </ng-template>
+      <app-sent-requests></app-sent-requests>
+    </mat-tab>
+  <mat-tab *ngIf="this.US.getCurrentUser().typeOfUser == 'Driver'"> 
+    <ng-template matTabLabel>
+      <span matBadge="2" matBadgeOverlap="false">Recieved Requests</span>
+    </ng-template>
+    <app-recieved-requests></app-recieved-requests>
+  </mat-tab>
+  <mat-tab>
+      <ng-template matTabLabel>
+        <span matBadge="2" matBadgeOverlap="false" [matBadgeHidden]=hiddenApproved (click)="onApprovedBadge()">Approved Requests</span>
+      </ng-template>
+    <app-approved></app-approved>
+  </mat-tab>
+  <mat-tab>
+      <ng-template matTabLabel>
+        <span matBadge="1" matBadgeOverlap="false" [matBadgeHidden]=hiddenFinished (click)="onFinishedBadge()">Finished rides</span>
+      </ng-template>
+    <app-completed-rides></app-completed-rides>
+  </mat-tab>
+</mat-tab-group>

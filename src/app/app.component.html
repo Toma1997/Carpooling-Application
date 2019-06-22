@@ -1,33 +1,118 @@
+<!-- <mat-sidenav-container>
+  <mat-sidenav #sidenav opened="true">
+    <p>Sidenav</p>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div><button (click)="sidenav.toggle()">Toggle sidenav</button></div>
+    <div>Logo</div>
+    <div>
+      <a routerLink="/signup">Signup</a>
+      <a routerLink="/login">Login</a>
+      <a routerLink="/training">Training</a>
+    </div>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav opened="false" >
+    <mat-nav-list>
+      <a *ngIf="!loggedIn" mat-list-item routerLink="/signup" (click)="sidenav.close()">
+        <mat-icon>person</mat-icon>
+        Register
+      </a>
+      <a *ngIf="!loggedIn" mat-list-item routerLink="/login" (click)="sidenav.close()">
+        <mat-icon>input</mat-icon>
+        Log in
+      </a>
+      <a *ngIf="loggedIn" mat-list-item routerLink="/all-rides" (click)="sidenav.close()">
+        <mat-icon>directions_car</mat-icon>
+        Rides
+      </a>
+      <a *ngIf="loggedIn" mat-list-item routerLink="/notifications" (click)="sidenav.close();onBadge()">
+        <mat-icon>calendar_view_day</mat-icon>
+        <a><span matBadge="3" matBadgeOverlap="true" matBadgeColor="warn" [matBadgeHidden]=hiddenBadge>Actions</span></a>
+      </a>
+      
+      <a *ngIf="loggedIn && this.US.getCurrentUser().typeOfUser == 'Driver'" mat-list-item routerLink="/new-ride" (click)="sidenav.close()">
+        <mat-icon>directions_bus</mat-icon>
+        New Ride
+      </a>
+      <a *ngIf="loggedIn" mat-list-item routerLink="/profile" (click)="myProfile(); sidenav.close()">
+        <mat-icon>person</mat-icon>
+        My Profile
+      </a>
+      <a *ngIf="loggedIn" mat-list-item routerLink="/" (click)="sidenav.close(); signOut()">
+        <mat-icon>exit_to_app</mat-icon>
+        Sing out
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+        <div fxHide.gt-xs>
+          <button mat-raised-button color="accent" (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+        <!-- <div fxFlex fxLayoutAlign="end">
+          <a routerLink="/">
+            <mat-icon>directions_run</mat-icon>
+          </a>
+        </div> -->
+        <!-- ngIf radi ali daje gresku: Uncaught TypeError: Cannot read property 'indexOf' of null -->
+        
+        <div fxHide.gt-xs fxFlex="63%" fxLayoutAlign="center"><font face="verdana" size="+2.5" color="white"><i>{{ route }}</i></font></div>
+        <div fxHide fxShow.gt-xs fxFlex="54%" fxLayoutAlign="end"><font face="verdana" size="+2.5" color="white"><i>{{ route }}</i></font></div>
+        <div fxFlex fxLayoutAlign="end" fxLayoutGap="15px" fxHide.xs>
+
+          <a *ngIf="!loggedIn" routerLink="/signup">Register</a>
+          <a *ngIf="!loggedIn" routerLink="/login">Log in</a>
+          <a *ngIf="loggedIn" routerLink="/notifications" (click)="onBadge()"><span matBadge="3" matBadgeOverlap="true" matBadgeColor="warn" [matBadgeHidden]=hiddenBadge >Actions</span></a>
+          <a *ngIf="loggedIn && this.US.getCurrentUser().typeOfUser == 'Driver'" routerLink="/new-ride">New Ride</a>
+          <a *ngIf="loggedIn" routerLink="/all-rides">Rides</a>
+          <div *ngIf="loggedIn" [matMenuTriggerFor]="menu" >
+            <a href="javascript:;" fxLayoutAlign="center center">{{ this.US.getCurrentUser().firstName }}
+            <mat-icon>expand_more</mat-icon>
+            </a>
+          </div>
+
+
+          <!-- <a *ngIf="loggedIn" routerLink="/" (click)="signOut()">Sign out</a> -->
+          <!-- <button *ngIf="loggedIn" mat-button [matMenuTriggerFor]="menu">{{ this.US.getCurrentUser().firstName }}</button> -->
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/profile" (click)="myProfile()">My Profile</button>
+            <button mat-menu-item routerLink="/" (click)="signOut()">Sign Out</button>
+          </mat-menu>
+        </div>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Carpooling Logo" src="carpooling.png">
-</div>
-<h2>This is application for riding students from home to university, below are the most important options: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="#">Driving schedule</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="#">Drivers & vechiles</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="#">About us</a></h2>
-  </li>
-</ul>
-
-<!--Angular dugme primer-->
-<section>
-  <button mat-raised-button color="primary">Click me !</button>
-</section>
-<section>
-  <button mat-icon-button color="accent">
-    <mat-icon>home</mat-icon>
-  </button>
-</section>
-
-<!--Mesto prikazivanja rute-->
-<router-outlet></router-outlet>
-
+<!-- <router-outlet></router-outlet> -->
+<!-- <div style="text-align:center">
+    <h1>
+        <section id="container">
+          <div id="child1" class="child">
+            <section>
+              <button mat-raised-button color="primary">Klikni me !</button>
+            </section>
+          </div>
+          <div id="child2" class="child">
+            <section>
+              <button mat-icon-button color="warn">
+                <mat-icon>get_app</mat-icon>
+              </button>
+            </section>
+          </div>
+          <div id="child3" class="child">
+            Welcome to {{ title }}!
+          </div>
+        </section>
+    </h1>
+    <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  </div>
+  
+   -->

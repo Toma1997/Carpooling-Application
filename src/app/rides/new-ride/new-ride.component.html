@@ -1,0 +1,96 @@
+<section fxLayout="column" fxLayoutAlign="center center">
+<mat-vertical-stepper [linear]=true #stepper  >
+  <mat-step [stepControl]="rideFormGroup">
+    <form [formGroup]="rideFormGroup" (ngSubmit)="form6()" #formsix="ngForm" >
+      <ng-template matStepLabel>Enter the name of the ride</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Ride name" formControlName="rideNameFF" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <form [formGroup]="firstFormGroup" (ngSubmit)="form1()" #formone="ngForm" >
+      <ng-template matStepLabel>Fill out your desination</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="DestinationFF" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup" (ngSubmit)="form3()" #formthree="ngForm" >
+      <ng-template matStepLabel>Fill out your starting location</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="startingLocationFF" required>
+      </mat-form-field>
+      <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup" (ngSubmit)="form2()" #formtwo="ngForm" fxLayoutAlign="center start" fxLayout="column">
+      <ng-template matStepLabel>Choose date and time of departure</ng-template>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="timeOfDepartureFF" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div fxLayout="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Hour of departure</mat-label>
+          <input type="number" matInput placeholder="Please use 24hr format" formControlName="hourOfDepartureFF" required min="0" max="23" > 
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Minute of departure</mat-label>
+          <input type="number"  matInput placeholder formControlName="minuteOfDepartureFF" required min="0" max="59">
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="fourthFormGroup">
+    <form [formGroup]="fourthFormGroup" (ngSubmit)="form4()" #formfour="ngForm" fxLayoutAlign="center start" fxLayout="column">
+      <ng-template matStepLabel>Enter the number of max passengers</ng-template>
+      <mat-form-field>
+        <input type="number" matInput placeholder formControlName="maxPassengersFF" required min="1">
+      </mat-form-field>
+      <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="fifthFormGroup">
+    <form [formGroup]="fifthFormGroup" (ngSubmit)="final()" #formfive="ngForm" >
+      <ng-template matStepLabel>Confirm</ng-template>
+      <div fxLayoutAlign="center start" fxLayout="column">
+        <button mat-button type="button" mat-raised-button color="primary" (click)="formfive.ngSubmit.emit()">Create a ride</button>
+      </div>
+    </form>
+  </mat-step>
+  
+
+    <!-- <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="onClick()">PUSHIT</button>
+      <button mat-button type="button" (click)="formone.ngSubmit.emit();formtwo.ngSubmit.emit();formthree.ngSubmit.emit();formfour.ngSubmit.emit()">
+        submit
+      </button>
+    </div>
+  </mat-step> -->
+</mat-vertical-stepper>
+
+</section>
