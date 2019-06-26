@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'singipool-app';
+  title = 'Singidunum Carpooling';
 
   hiddenBadge=false;
 
@@ -34,7 +34,7 @@ export class AppComponent {
         }
 
       } else {
-        this.route = 'SingiPool'
+        this.route = 'Singidunum Carpooling'
       }
     });
   }

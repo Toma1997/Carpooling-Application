@@ -39,14 +39,14 @@ export class UserService {
 
 
     private listOfUsers : Array<User> = [
-       {id: 0, email: 'nikola@gmail.com', password: "singidunum", firstName: 'Nikola', lastName: "P", phone: "06412345678", address: "Beogradska 1", dateOfRegistration: new Date(), typeOfUser: 'Passenger'},
-       {id: 1, email: 'babydriver@gmail.com', password: "singidunum", firstName: 'Baby', lastName: "Driver", phone: "069123456", address: "Resavska 1", dateOfRegistration: new Date(), typeOfUser: 'Driver'},
-       {id: 2, email: 'test2@gmail.com', password: "singidunum", firstName: 'Pera', lastName: "Peric", phone: "123222222", address: "Beogradska 2", dateOfRegistration: new Date(), typeOfUser: 'Driver'}
+       {id: 0, email: 'toma.joksimovic@gmail.com', password: "tomas1997", firstName: 'Toma', lastName: "Joksimovic", phone: "063334774", address: "Kraljice Katarine 33", dateOfRegistration: new Date(), typeOfUser: 'Passenger'},
+       {id: 1, email: 'bakardi@gmail.com', password: "bakabaka", firstName: 'Aleksandar', lastName: "Babic", phone: "069123456", address: "Resavska 1", dateOfRegistration: new Date(), typeOfUser: 'Driver'},
+       {id: 2, email: 'sale97@gmail.com', password: "salence97", firstName: 'Sasa', lastName: "Cejic", phone: "123222222", address: "Beogradska 2", dateOfRegistration: new Date(), typeOfUser: 'Driver'}
     ]
 
 
     private listOfAllComments : Array<Comment> = [
-        {idFrom : 1, idTo: 0, date: new Date(), comment : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."},
+        {idFrom : 0, idTo: 1, date: new Date(), comment : "Vrhunska voznja i usluga. Topla preporuka svim studentima, umesto da se ceka bus i guzvanje u busu, ovo je brzi, udobniji i jeftiniji nacin prevoza do faksa."},
         {idFrom : 0, idTo: 0, date: new Date(), comment : "test456"},
         {idFrom : 0, idTo: 1, date: new Date(), comment : "test789"}
     ]
@@ -79,8 +79,6 @@ export class UserService {
         this.listOfUsers.push( {id, email,password, firstName, lastName, phone, address, typeOfUser, dateOfRegistration: new Date()} )
         this.loggedInUser = this.getListOfUsers()[this.getListOfUsers().length - 1]
         
-
-        //console.log(this.getListOfUsers());
         //console.log(this.loggedInUser.lastName)
 
     }
@@ -127,16 +125,13 @@ export class UserService {
                 results.push(this.listOfUsers[i]);
             }
         }
-        // console.log(results);
-        // console.log(results.length);
+
         if (!results.length)
             return false;
         else{
             if(results[0].password  ==  password){
                 this.loggedInUser = results[0];
                 // this.AppComponent.setLoggedIn(true);
-                // this.router.navigate(['/training']);
-                //console.log(this.loggedInUser.firstName)
                 return true;
             }
         }
