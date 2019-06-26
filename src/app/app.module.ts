@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { MaterialModule } from './matrial.module';
+import { MaterialModule } from './material.module';
 import { RoutingModule } from './routing.module';
 import { MatIconModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
