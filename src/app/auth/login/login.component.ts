@@ -24,12 +24,6 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['']);
       console.log()
     }
-  
-    //autologin
-    // if(this.US.checkLogin("nikola@gmail.com", "singidunum")){
-    //   this.AppComponent.setLoggedIn(true);
-    //   this.router.navigate(['']);
-    // }
   }
   
 
