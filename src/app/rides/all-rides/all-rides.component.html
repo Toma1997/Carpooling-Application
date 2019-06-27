@@ -2,7 +2,7 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header >
       <mat-panel-title fxLayoutAlign="center center">
-        <button mat-raised-button color="primary">Search for a ride</button>
+        <button mat-raised-button color="warn">Search for a ride</button>
       </mat-panel-title>
     </mat-expansion-panel-header>
     <mat-horizontal-stepper #stepper>
@@ -118,7 +118,7 @@
     <ng-container matColumnDef="action">
     <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <button mat-raised-button color="accent" (click)="requestRide()">Go!</button>
+      <button mat-raised-button color="warn" (click)="requestRide()">Go!</button>
       <button *ngIf="this.US.getCurrentUser().typeOfUser=='Driver'" mat-raised-button color="warn" (click)="editRide()">Edit</button>
     </mat-cell>
     </ng-container>

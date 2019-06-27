@@ -12,7 +12,7 @@
   </mat-card-header>
 
   <mat-card-actions *ngIf="this.US.getProfileToShow()==this.US.getCurrentUser()" fxLayoutAlign="center center">
-    <button mat-button *ngIf="!isEditing" mat-raised-button color="primary" (click)="isEditing=true">EDIT PROFILE</button>
+    <button mat-button *ngIf="!isEditing" mat-raised-button color="warn" (click)="isEditing=true">EDIT PROFILE</button>
 
     <!-- <button mat-button>RATE</button> -->
   </mat-card-actions>
@@ -74,7 +74,7 @@
         <textarea matInput placeholder="Add a comment" ngModel name="comment"  [(ngModel)]=comment required #commentInput="ngModel"></textarea>
         <mat-error *ngIf="commentInput.hasError('required')">Comment can't be empty.</mat-error> 
       </mat-form-field>
-      <button type="submit" mat-raised-button color="primary" [disabled]="f2.invalid">
+      <button type="submit" mat-raised-button color="warn" [disabled]="f2.invalid">
         ADD COMMENT
       </button>
     </form>
@@ -144,22 +144,11 @@
     </mat-radio-group>
   </mat-form-field>
 
-
-  <!-- <mat-form-field hintLabel="This will be used for signing in.">
-      <input type="email" matInput placeholder="Your email" ngModel name="email" email required #emailInput="ngModel">
-      <mat-error *ngIf="emailInput.hasError('required')">Field should not be empty.</mat-error>
-      <mat-error *ngIf="!emailInput.hasError('required')">Please use the correct email format.</mat-error>
-    </mat-form-field> -->
-
-  <!-- <mat-form-field>
-    <input type="text" matInput placeholder="Last name" ngModel name="lastName" required #lastNameInput="ngModel">
-    <mat-error *ngIf="lastNameInput.hasError('required')">Please write Your last name.</mat-error>
-  </mat-form-field> -->
   <div fxLayoutGap="20px" fxLayout="row" fxLayoutAlign="center center" >
-  <button mat-stroked-button color="primary" (click)="isEditing=false">
+  <button mat-stroked-button color="warn" (click)="isEditing=false">
     CANCEL CHANGES
   </button>
-  <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">
+  <button type="submit" mat-raised-button color="warn" [disabled]="f.invalid">
     UPDATE PROFILE
   </button>
   </div>

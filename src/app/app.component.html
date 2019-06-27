@@ -16,7 +16,7 @@
       </a>
       <a *ngIf="loggedIn" mat-list-item routerLink="/notifications" (click)="sidenav.close();onBadge()">
         <mat-icon>calendar_view_day</mat-icon>
-        <a><span matBadge="3" matBadgeOverlap="true" matBadgeColor="warn" [matBadgeHidden]=hiddenBadge>Actions</span></a>
+        <a><span matBadge="3" matBadgeOverlap="true" matBadgeColor="white" [matBadgeHidden]=hiddenBadge>Actions</span></a>
       </a>
       
       <a *ngIf="loggedIn && this.US.getCurrentUser().typeOfUser == 'Driver'" mat-list-item routerLink="/new-ride" (click)="sidenav.close()">
