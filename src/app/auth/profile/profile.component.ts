@@ -29,14 +29,12 @@ export class ProfileComponent implements OnInit {
   typeOfUser=this.US.getCurrentUser().typeOfUser;
   
   ngOnInit() {
-
     if(this.AppComponent.loggedIn == false){
       this.router.navigate(['/']);
     }
   }
 
   onSubmit(form : NgForm) {
-    // console.log(form.value);
     if(this.US.checkEmailUpdate(this.email)){
       this.US.getCurrentUser().firstName=this.firstName;
       this.US.getCurrentUser().lastName=this.lastName;
@@ -47,8 +45,7 @@ export class ProfileComponent implements OnInit {
       this.US.getCurrentUser().typeOfUser=this.typeOfUser;
 
       this.isEditing = false;
-    }
-    else{
+    } else{
       const dialogRef = this.dialog.open(FailComponent);
     }
   }

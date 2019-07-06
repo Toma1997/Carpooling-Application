@@ -17,8 +17,6 @@
     <!-- <button mat-button>RATE</button> -->
   </mat-card-actions>
   <mat-divider></mat-divider>
-
-  <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
   <section *ngIf="!isEditing" class="profiledata">
     <mat-card-header fxLayout="row" fxLayoutGap="10px">
       <div>
@@ -112,13 +110,6 @@
     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> 
     <mat-hint align="end">{{ passInput.value?.length }} /8 </mat-hint>
   </mat-form-field>
-
-  <!-- <mat-form-field appearance="outline">
-    <mat-label>Your Password</mat-label>
-    <input type="password" matInput placeholder ngModel name="password" [(ngModel)]=password required minlength="8" #passInput="ngModel"> 
-    <mat-icon matSuffix>lock</mat-icon>
-    <mat-hint align="end">{{ passInput.value?.length }} /8 </mat-hint>
-  </mat-form-field> -->
 
   <mat-form-field appearance="outline">
     <mat-label>Mobile phone number</mat-label>

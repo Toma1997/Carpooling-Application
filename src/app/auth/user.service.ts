@@ -77,9 +77,7 @@ export class UserService {
         var id = this.getListOfUsers()[this.getListOfUsers().length - 1].id + 1;
 
         this.listOfUsers.push( {id, email,password, firstName, lastName, phone, address, typeOfUser, dateOfRegistration: new Date()} )
-        this.loggedInUser = this.getListOfUsers()[this.getListOfUsers().length - 1]
-        
-        //console.log(this.loggedInUser.lastName)
+        this.loggedInUser = this.getListOfUsers()[this.getListOfUsers().length - 1];
 
     }
 
@@ -148,9 +146,6 @@ export class UserService {
                 results.push(this.listOfAllComments[i]);
             }
         }
-        // if (results.length)
-        //     console.log("duzina niza je 0");
-        //     return false;
         return results;
     }
 

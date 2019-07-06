@@ -39,16 +39,13 @@ export class AppComponent {
     });
   }
   loggedIn : boolean = false;
-  // imeKorisnika = this.US.getCurrentUser().firstName;
 
-  
   setLoggedIn( value : boolean){
     this.loggedIn = value;
   }
 
   signOut(){
     this.loggedIn = false;
-    //console.log("Signed out.")
   }
 
   myProfile(){

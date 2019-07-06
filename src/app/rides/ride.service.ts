@@ -41,4 +41,31 @@ export class RideService {
         startingLocation : startingLocation, destination : destination, status : 'scheduled'} )
        
     }
+
+    /*
+    getDriverById(id: number) {
+        var foundUser: User;
+        UserService.listOfUsers.forEach(user => {
+            if (user.id == id) {
+                foundUser = user;
+            }
+        });
+        return foundUser;
+    }
+
+    getRideById(id: number) {
+        var foundRide: Ride;
+        this.rides.forEach(ride => {
+            if (ride.id == id) {
+                foundRide = ride;
+            }
+        });
+        return foundRide;
+    }
+
+    removeRide(rideToDelete: Ride) {
+        this.rides = this.rides.filter(ride => 
+            ride.id != rideToDelete.id);
+    } 
+    */
 }

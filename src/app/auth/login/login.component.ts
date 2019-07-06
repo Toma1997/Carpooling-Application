@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if(this.AppComponent.loggedIn){
       this.router.navigate(['']);
-      console.log()
     }
   }
   

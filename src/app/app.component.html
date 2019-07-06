@@ -40,12 +40,6 @@
             <mat-icon>menu</mat-icon>
           </button>
         </div>
-        <!-- <div fxFlex fxLayoutAlign="end">
-          <a routerLink="/">
-            <mat-icon>directions_run</mat-icon>
-          </a>
-        </div> -->
-        <!-- ngIf radi ali daje gresku: Uncaught TypeError: Cannot read property 'indexOf' of null -->
         
         <div fxHide.gt-xs fxFlex="63%" fxLayoutAlign="center"><font face="verdana" size="+2.5" color="white"><i>{{ route }}</i></font></div>
         <div fxHide fxShow.gt-xs fxFlex="54%" fxLayoutAlign="end"><font face="verdana" size="+2.5" color="white"><i>{{ route }}</i></font></div>
@@ -61,10 +55,6 @@
             <mat-icon>expand_more</mat-icon>
             </a>
           </div>
-
-
-          <!-- <a *ngIf="loggedIn" routerLink="/" (click)="signOut()">Sign out</a> -->
-          <!-- <button *ngIf="loggedIn" mat-button [matMenuTriggerFor]="menu">{{ this.US.getCurrentUser().firstName }}</button> -->
           <mat-menu #menu="matMenu">
             <button mat-menu-item routerLink="/profile" (click)="myProfile()">My Profile</button>
             <button mat-menu-item routerLink="/" (click)="signOut()">Sign Out</button>

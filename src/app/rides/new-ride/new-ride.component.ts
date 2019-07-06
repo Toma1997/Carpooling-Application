@@ -61,12 +61,10 @@ export class NewRideComponent{
 
 
   form1(){
-    //console.log(this.firstFormGroup.value);
     this.destination=this.firstFormGroup.value.DestinationFF;
   }
 
   form2(){
-    //console.log(this.secondFormGroup.value);
     this.timeOfDeparture=   this.secondFormGroup.value.timeOfDepartureFF;
     this.hourOfDeparture=   this.secondFormGroup.value.hourOfDepartureFF;
     this.minuteOfDeparture= this.secondFormGroup.value.minuteOfDepartureFF;
@@ -74,12 +72,10 @@ export class NewRideComponent{
   }
 
   form3(){
-    //console.log(this.thirdFormGroup.value);
     this.startingLocation=this.thirdFormGroup.value.startingLocationFF;
   }
 
   form4(){
-    //console.log(this.fourthFormGroup.value);
     this.maxPassengers=this.fourthFormGroup.value.maxPassengersFF;
   }
 

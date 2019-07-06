@@ -16,7 +16,5 @@ export class RequestRideComponent implements OnInit {
 
   onClick(){
     this.dialogRef.close();
-    //console.log(this.receivedData)     // this.receivedData je email koriscen za registraciju
-    
   }
 }

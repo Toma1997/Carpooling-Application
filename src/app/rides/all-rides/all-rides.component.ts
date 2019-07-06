@@ -67,7 +67,6 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
     this.rideToggle=true;
 
     this.rideSource.data = this.RS.getRides();
-    //console.log(this.rideSource);
 
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: []
@@ -101,7 +100,6 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
   } 
 
   viewProfile(idDriver:number){
-    //console.log(idDriver);
     this.US.profileToShow=idDriver;
   }
 }

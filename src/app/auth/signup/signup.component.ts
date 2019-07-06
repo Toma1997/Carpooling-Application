@@ -31,8 +31,6 @@ export class SignupComponent implements OnInit {
   }
   
   onSubmit(form : NgForm) {
-    // console.log(form);
-    //console.log(form.value.email);
     if(this.US.checkEmail(form.value.email)){
       this.US.registerUser(form.value.email, form.value.password, form.value.firstName, form.value.lastName, form.value.phone, form.value.address, form.value.typeOfUser);
       //this.emailInUse = false;
@@ -53,10 +51,3 @@ export class SignupComponent implements OnInit {
   }
 
 }
-
-
-    // const dialogRef = this.dialog.open(SuccessComponent, {
-    //   data: {
-    //     email: form.value.email
-    //   }
-    // });
