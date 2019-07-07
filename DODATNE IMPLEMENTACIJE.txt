@@ -17,6 +17,4 @@ A ZATIM UPISIVATi PRI IZLOGOVANJU ( 4 fajla -> korisnike, voznje, komentare, rej
 
 7) DA SE PRI PONOVNOM UCITAVANJU STRANICE OSTANE ULOGOVAN NA ISTOJ STRANICI
 
-8) SREDITI BOJU U BELU ZA SVE PLACEHOLDER U FORMAMA I NA OSTALIM DELOVIMA, SLIKA SA KOLIMA KOJA VOZE PUTNIKE NA NASLOVNOJ
-
-9) REGISTRACIJA - DODATI POLJE ZA UNOS SLIKE KAKO BI SVAKI KORISNIK IMAO SVOJU SLIKU (u JSON fajlu se cuva kao string putanja u 		assets/sers_images (staviti da se moze izmeniti slika cime se prepisuje postojeca putanja sa novom)
+8) REGISTRACIJA - DODATI POLJE ZA UNOS SLIKE KAKO BI SVAKI KORISNIK IMAO SVOJU SLIKU (u JSON fajlu se cuva kao string putanja u 		assets/sers_images (staviti da se moze izmeniti slika cime se prepisuje postojeca putanja sa novom)
