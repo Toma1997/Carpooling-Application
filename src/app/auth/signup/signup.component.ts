@@ -17,8 +17,6 @@ export class SignupComponent implements OnInit {
 
   constructor(private US : UserService, private dialog: MatDialog, private router: Router, private AppComponent :  AppComponent) { }
   
-
-  //emailInUse = false;
   hide = true;
   ngOnInit() {
     if(this.AppComponent.loggedIn){
@@ -33,7 +31,6 @@ export class SignupComponent implements OnInit {
   onSubmit(form : NgForm) {
     if(this.US.checkEmail(form.value.email)){
       this.US.registerUser(form.value.email, form.value.password, form.value.firstName, form.value.lastName, form.value.phone, form.value.address, form.value.typeOfUser);
-      //this.emailInUse = false;
       const dialogRef = this.dialog.open(SuccessComponent);
   
       
@@ -43,7 +40,6 @@ export class SignupComponent implements OnInit {
       });
     }
     else{
-      //this.emailInUse = true;
       const dialogRef = this.dialog.open(FailComponent);
     }
 

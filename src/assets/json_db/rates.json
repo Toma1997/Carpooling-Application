@@ -1,7 +1,7 @@
 [
-    {"idFrom" : 1, "idTo": 0, "rating": 4},
-    {"idFrom" : 2, "idTo": 0, "rating": 5},
-    {"idFrom" : 0, "idTo": 1, "rating": 5},
-    {"idFrom" : 1, "idTo": 2, "rating": 4},
-    {"idFrom" : 0, "idTo": 2, "rating": 5}
+    {"idFrom": 1, "idTo": 0, "rating": 4},
+    {"idFrom": 2, "idTo": 0, "rating": 5},
+    {"idFrom": 0, "idTo": 1, "rating": 5},
+    {"idFrom": 1, "idTo": 2, "rating": 4},
+    {"idFrom": 0, "idTo": 2, "rating": 5}
 ]
