@@ -21,12 +21,7 @@ export interface Ride {
 @Injectable()
 export class RideService {
 
-    private rides : Array<Ride> = [
-        {id: 0, rideName: "test voznja" ,idDriver: 1, maxPassengers : 4, requested : [], rejected: [], passengers : [0], timeOfDeparture : new Date(), hourOfDeparture : 10,
-        minuteOfDeparture :20, startingLocation : "Trg Republike", destination : "Danijelova 32", status : 'canceled' },
-        {id: 1, rideName: "Prevoz studenata" ,idDriver: 2, maxPassengers : 4, requested : [], rejected: [], passengers : [1,2], timeOfDeparture : new Date(), hourOfDeparture : 15,
-        minuteOfDeparture :15, startingLocation : "Kalemegdan", destination : "Singidunum", status : 'scheduled' }
-    ]
+    private rides : Array<Ride> = []; // // READ JSON FROM FILE AND DECODE TO ARRAY -> "../../assets/json_db/rides.json"
 
     getRides() {
         return this.rides;

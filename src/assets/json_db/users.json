@@ -1,0 +1,35 @@
+[
+    {
+        "id": 0, 
+        "email": "toma.joksimovic@gmail.com", 
+        "password": "tomas1997", 
+        "firstName": "Toma", 
+        "lastName": "Joksimovic", 
+        "phone": "063334774", 
+        "address": "Kraljice Katarine 33", 
+        "dateOfRegistration": "05/01/2019, 10:49:36 AM", 
+        "typeOfUser": "Passenger"
+    },
+    {
+        "id": 1, 
+        "email": "bakardi@gmail.com", 
+        "password": "bakabaka", 
+        "firstName": "Aleksandar", 
+        "lastName": "Babic", 
+        "phone": "069123456", 
+        "address": "Resavska 1", 
+        "dateOfRegistration": "06/15/2019, 09:19:36 PM", 
+        "typeOfUser": "Driver"
+    },
+    {
+        "id": 2, 
+        "email": "sale97@gmail.com", 
+        "password": "salence97", 
+        "firstName": "Sasa", 
+        "lastName": "Cejic", 
+        "phone": "123222222", 
+        "address": "Beogradska 2", 
+        "dateOfRegistration": "07/01/2019, 09:19:36 AM", 
+        "typeOfUser": "Driver"
+    }
+]

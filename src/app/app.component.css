@@ -1,10 +1,12 @@
 mat-sidenav-container, mat-sidenav-content, mat-sidenav{
-    height: 100%
+    height: 100%;
+    background-color: darkslateblue;
 }
 
 mat-sidenav {
     width: 250px;
 }
+
 
 a {
     color: white;
@@ -14,7 +16,7 @@ a:hover, a:active{
     color: lightgray;
 }
 
-/* #container{
+#container{
     display: flex;
     flex-direction: flex-start;
     justify-content: center;
@@ -27,4 +29,4 @@ a:hover, a:active{
 #child2{
     background-color: greenyellow;}
 #child3{
-    background-color: violet} */
+    background-color: violet}

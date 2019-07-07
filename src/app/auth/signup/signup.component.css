@@ -1,3 +1,7 @@
 mat-form-field{
     width:300px;
 }
+
+mat-label, a, mat-error, ::placeholder, mat-form-field, div {
+    color: white;
+}

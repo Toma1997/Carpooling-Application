@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
   
 
   onSubmit(form : NgForm) {
-    // console.log(form);
     if(this.US.checkLogin(form.value.email, form.value.password)){
       this.AppComponent.setLoggedIn(true);
       this.router.navigate(['']);

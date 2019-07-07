@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+
 // import { AppComponent } from 'src/app/app.component';
 // import { Router } from "@angular/router";
 
@@ -33,31 +34,16 @@ export class UserService {
 
     // constructor(private AppComponent :  AppComponent, private router: Router) { }
 
-
     profileToShow = 0;
     loggedInUser : User  = {id: 0, email: '0', password: "0", firstName: '0', lastName: "0", phone: "0", address: "0 1", dateOfRegistration: new Date(), typeOfUser: 'Passenger'};
 
 
-    private listOfUsers : Array<User> = [
-       {id: 0, email: 'toma.joksimovic@gmail.com', password: "tomas1997", firstName: 'Toma', lastName: "Joksimovic", phone: "063334774", address: "Kraljice Katarine 33", dateOfRegistration: new Date(), typeOfUser: 'Passenger'},
-       {id: 1, email: 'bakardi@gmail.com', password: "bakabaka", firstName: 'Aleksandar', lastName: "Babic", phone: "069123456", address: "Resavska 1", dateOfRegistration: new Date(), typeOfUser: 'Driver'},
-       {id: 2, email: 'sale97@gmail.com', password: "salence97", firstName: 'Sasa', lastName: "Cejic", phone: "123222222", address: "Beogradska 2", dateOfRegistration: new Date(), typeOfUser: 'Driver'}
-    ]
 
+    private listOfUsers : Array<User> = []; // READ JSON FROM FILE AND DECODE TO ARRAY -> "../../assets/json_db/users.json"
 
-    private listOfAllComments : Array<Comment> = [
-        {idFrom : 0, idTo: 1, date: new Date(), comment : "Vrhunska voznja i usluga. Topla preporuka svim studentima, umesto da se ceka bus i guzvanje u busu, ovo je brzi, udobniji i jeftiniji nacin prevoza do faksa."},
-        {idFrom : 0, idTo: 0, date: new Date(), comment : "test456"},
-        {idFrom : 0, idTo: 1, date: new Date(), comment : "test789"}
-    ]
+    private listOfAllComments : Array<Comment> = []; // READ JSON FROM FILE AND DECODE TO ARRAY -> "../../assets/json_db/comments.json"
 
-    private listOfAllRatings : Array<Rating> = [
-        {idFrom : 1, idTo: 0, rating: 4},
-        {idFrom : 2, idTo: 0, rating: 5},
-        {idFrom : 0, idTo: 1, rating: 5},
-        {idFrom : 1, idTo: 2, rating: 4},
-        {idFrom : 0, idTo: 2, rating: 5},
-    ]
+    private listOfAllRatings : Array<Rating> = []; // READ JSON FROM FILE AND DECODE TO ARRAY -> "../../assets/json_db/rates.json"
 
 
     getListOfUsers() {

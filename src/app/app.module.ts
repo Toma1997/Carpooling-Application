@@ -10,8 +10,9 @@ import { MaterialModule } from './material.module';
 import { RoutingModule } from './routing.module';
 import { MatIconModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout'
-import { FormsModule } from '@angular/forms'
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import 'hammerjs';
 
 import { UserService } from './auth/user.service';
@@ -76,6 +77,7 @@ import { TosComponent } from './auth/signup/tos/tos.component';
     ReactiveFormsModule,
     MatStepperModule,
     Ng5SliderModule,
+    HttpClientModule,
     RouterModule.forRoot([])
   ],
   providers: [ UserService, RideService],
