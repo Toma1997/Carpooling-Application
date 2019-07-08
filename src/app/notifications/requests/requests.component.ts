@@ -17,7 +17,7 @@ export class RequestsComponent implements OnInit {
 
   ngOnInit() {
     if(this.AppComponent.loggedIn == false){
-      this.router.navigate(['/']);
+      this.router.navigate(['']);
     }
   }
 

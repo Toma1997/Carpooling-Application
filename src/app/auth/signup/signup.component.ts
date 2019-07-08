@@ -7,6 +7,7 @@ import { FailComponent } from '../signup/failure/fail/fail.component';
 import { Router } from "@angular/router";
 import { AppComponent } from '../../app.component';
 import { TosComponent } from './tos/tos.component';
+import { RideService } from 'src/app/rides/ride.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,11 +16,13 @@ import { TosComponent } from './tos/tos.component';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private US : UserService, private dialog: MatDialog, private router: Router, private AppComponent :  AppComponent) { }
+  constructor(private US : UserService, private RS: RideService, private dialog: MatDialog, private router: Router, private AppComponent :  AppComponent) { }
   
   hide = true;
   ngOnInit() {
+    this.US.getJSONdata();
     if(this.AppComponent.loggedIn){
+      this.RS.getJSONdata();
       this.router.navigate(['']);
     }
   }
@@ -29,7 +32,6 @@ export class SignupComponent implements OnInit {
   }
   
   onSubmit(form : NgForm) {
-    this.US.getJSONdata();
     if(this.US.checkEmail(form.value.email)){
       this.US.registerUser(form.value.email, form.value.password, form.value.firstName, form.value.lastName, form.value.phone, form.value.address, form.value.typeOfUser);
       const dialogRef = this.dialog.open(SuccessComponent);
@@ -37,6 +39,7 @@ export class SignupComponent implements OnInit {
       
       dialogRef.afterClosed().subscribe(() => {
         this.AppComponent.setLoggedIn(true);
+        this.RS.getJSONdata();
         this.router.navigate(['']);
       });
     }

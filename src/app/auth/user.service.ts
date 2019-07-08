@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
 
 // import { AppComponent } from 'src/app/app.component';
 // import { Router } from "@angular/router";
@@ -125,7 +124,6 @@ export class UserService {
         else{
             if(results[0].password  ==  password){
                 this.loggedInUser = results[0];
-                // this.AppComponent.setLoggedIn(true);
                 return true;
             }
         }

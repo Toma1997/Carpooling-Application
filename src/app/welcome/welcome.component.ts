@@ -14,7 +14,7 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit() {
     if(this.AppComponent.loggedIn){
-      this.router.navigate(['/all-rides']);
+      this.router.navigate(['']);
     }
   }
 

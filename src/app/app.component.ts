@@ -18,23 +18,20 @@ export class AppComponent {
 
   constructor(private US : UserService, location: Location, private router : Router) {
     router.events.subscribe((val) => {
-      if(location.path() != ''){
-        if(location.path() == '/profile'){
-          this.route="Profile";
-        }else if(location.path() == '/signup'){
-          this.route="Register";
-        }else if(location.path() == '/login'){
-          this.route="Log in";
-        }else if(location.path() == '/new-ride'){
-          this.route="Create a ride";
-        }else if(location.path() == '/all-rides'){
-          this.route="Rides";
-        }else if(location.path() == '/notifications'){
-          this.route="Notifications and Requests";
-        }
-
-      } else {
-        this.route = 'Singidunum Carpooling'
+      if(location.path() == ''){
+        this.route = "Singidunum Carpooling";
+      } else if(location.path() == '/profile'){
+        this.route = "Profile";
+      }else if(location.path() == '/signup'){
+        this.route = "Register";
+      }else if(location.path() == '/login'){
+        this.route = "Log in";
+      }else if(location.path() == '/new-ride'){
+        this.route = "Create a ride";
+      }else if(location.path() == '/all-rides'){
+        this.route = "Rides";
+      }else if(location.path() == '/notifications'){
+        this.route = "Notifications and Requests";
       }
     });
   }

@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { UserService } from "../auth/user.service";
+import { User } from "../auth/user.service";
 
 //import { User } from "../auth/user.service";
 
@@ -23,11 +25,11 @@ export interface Ride {
 @Injectable()
 export class RideService {
 
-    constructor(private http: HttpClient){
-
+    constructor(private http: HttpClient, private UserService: UserService){
+    
     }
 
-    private rides : Array<Ride> = []; // // READ JSON FROM FILE AND DECODE TO ARRAY -> "../../assets/json_db/rides.json"
+    private rides : Array<Ride> = [];
 
     getJSONdata(){
         this.http.get<Ride[]>("../../assets/json_db/rides.json").subscribe(data => this.rides = data);
@@ -47,10 +49,10 @@ export class RideService {
        
     }
 
-    /*
+    
     getDriverById(id: number) {
         var foundUser: User;
-        UserService.listOfUsers.forEach(user => {
+        this.UserService.getListOfUsers().forEach(user => {
             if (user.id == id) {
                 foundUser = user;
             }
@@ -72,5 +74,5 @@ export class RideService {
         this.rides = this.rides.filter(ride => 
             ride.id != rideToDelete.id);
     } 
-    */
+    
 }

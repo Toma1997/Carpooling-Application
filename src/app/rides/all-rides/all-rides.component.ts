@@ -52,7 +52,9 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator : MatPaginator;
 
 
-  constructor(private RS : RideService, private US : UserService, private router : Router, private AppComponent : AppComponent, private _formBuilder: FormBuilder, private dialog: MatDialog) { }
+  constructor (private RS : RideService, private US : UserService, private router : Router, private AppComponent : AppComponent, private _formBuilder: FormBuilder, private dialog: MatDialog) {
+    
+  }
   
   
   doFilter(filterValue : string){
@@ -61,12 +63,10 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     if(this.AppComponent.loggedIn == false){
-      this.router.navigate(['/']);
+      this.router.navigate(['']);
     }
     
     this.rideToggle=true;
-
-    this.RS.getJSONdata();
     this.rideSource.data = this.RS.getRides();
 
     this.firstFormGroup = this._formBuilder.group({
