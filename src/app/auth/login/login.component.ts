@@ -21,15 +21,16 @@ export class LoginComponent implements OnInit {
   
   ngOnInit() {
     if(this.AppComponent.loggedIn){
-      this.router.navigate(['']);
+      this.router.navigate(['/']);
     }
   }
   
 
   onSubmit(form : NgForm) {
+    this.US.getJSONdata();
     if(this.US.checkLogin(form.value.email, form.value.password)){
       this.AppComponent.setLoggedIn(true);
-      this.router.navigate(['']);
+      this.router.navigate(['/']);
     }
     else{
       const dialogRef = this.dialog.open(FailedLoginComponent);

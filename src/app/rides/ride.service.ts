@@ -1,4 +1,6 @@
 import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+
 //import { User } from "../auth/user.service";
 
 export interface Ride {
@@ -21,7 +23,15 @@ export interface Ride {
 @Injectable()
 export class RideService {
 
+    constructor(private http: HttpClient){
+
+    }
+
     private rides : Array<Ride> = []; // // READ JSON FROM FILE AND DECODE TO ARRAY -> "../../assets/json_db/rides.json"
+
+    getJSONdata(){
+        this.http.get<Ride[]>("../../assets/json_db/rides.json").subscribe(data => this.rides = data);
+    }
 
     getRides() {
         return this.rides;

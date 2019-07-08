@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
-
-import * as users from '../../assets/json_db/users.json';
-import * as comments from '../../assets/json_db/comments.json';
-import * as rates from '../../assets/json_db/rates.json';
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 // import { AppComponent } from 'src/app/app.component';
 // import { Router } from "@angular/router";
@@ -37,31 +35,26 @@ export class UserService {
 
     // constructor(private AppComponent :  AppComponent, private router: Router) { }
 
+    constructor(private http: HttpClient){
+
+    }
+
     profileToShow = 0;
-    loggedInUser : User  = {id: 0, email: '0', password: "0", firstName: '0', lastName: "0", phone: "0", address: "0 1", dateOfRegistration: new Date(), typeOfUser: 'Passenger'};
+    loggedInUser : User;
 
 
-    // READ JSON FROM FILE AND DECODE TO ARRAY -> "../../assets/json_db/users.json"
     private listOfUsers : Array<User> = [];
     
-    // READ JSON FROM FILE AND DECODE TO ARRAY -> "../../assets/json_db/comments.json"
     private listOfAllComments : Array<Comment> = []; 
 
-    // READ JSON FROM FILE AND DECODE TO ARRAY -> "../../assets/json_db/rates.json"
     private listOfAllRatings : Array<Rating> = []; 
 
-    // NE RADI KAKO TREBA
     getJSONdata(){
-        for (let i = 0; i < users.default.length; i++) {
-            this.listOfUsers.push(JSON.parse(users[i]));
-        }
-        for (let i = 0; i < comments.default.length; i++) {
-            this.listOfAllComments.push(JSON.parse(comments[i]));
-        }
-        for (let i = 0; i < rates.default.length; i++) {
-            this.listOfAllRatings.push(JSON.parse(rates[i]));
-        }
+        this.http.get<User[]>("../../assets/json_db/users.json").subscribe(data => this.listOfUsers = data);
+        this.http.get<Comment[]>("../../assets/json_db/comments.json").subscribe(data => this.listOfAllComments = data);
+        this.http.get<Rating[]>("../../assets/json_db/rates.json").subscribe(data => this.listOfAllRatings = data);
     }
+
 
     getListOfUsers() {
         return this.listOfUsers;

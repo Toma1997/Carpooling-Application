@@ -61,11 +61,12 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     if(this.AppComponent.loggedIn == false){
-      this.router.navigate(['']);
+      this.router.navigate(['/']);
     }
     
     this.rideToggle=true;
 
+    this.RS.getJSONdata();
     this.rideSource.data = this.RS.getRides();
 
     this.firstFormGroup = this._formBuilder.group({
