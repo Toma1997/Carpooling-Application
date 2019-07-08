@@ -10,7 +10,6 @@ import { MatDialog } from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { RequestRideComponent } from '../request-ride/request-ride.component';
 import {EditRideComponent} from '../edit-ride/edit-ride.component';
-// import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-all-rides',
@@ -86,6 +85,12 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
     });
   }
 
+  // TREBA DA SE PONOVO UCITA TABELA NAKON BRISANJA ILI IZMENE ALI NECE
+  ngOnChanges(){
+    this.rideToggle=true;
+    this.rideSource.data = this.RS.getRides();
+  }
+
   requestRide(){
     const dialogRef = this.dialog.open(RequestRideComponent);
   }
@@ -94,7 +99,12 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(EditRideComponent);
   }
 
-
+  removeRide(id: number){
+    var foundRide : Ride = this.RS.getRideById(id);
+    this.RS.removeRide(foundRide);
+    
+  }
+  
   ngAfterViewInit() {
     this.rideSource.sort = this.sort;
     this.rideSource.paginator = this.paginator;

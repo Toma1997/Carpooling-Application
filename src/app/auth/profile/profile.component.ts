@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
   
   ngOnInit() {
     if(this.AppComponent.loggedIn == false){
-      this.router.navigate(['/']);
+      this.router.navigate(['']);
     }
   }
 

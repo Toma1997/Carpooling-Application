@@ -3,8 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import { UserService } from "../auth/user.service";
 import { User } from "../auth/user.service";
 
-//import { User } from "../auth/user.service";
-
 export interface Ride {
     id : number;
     rideName : string;
@@ -18,7 +16,7 @@ export interface Ride {
     minuteOfDeparture : number;
     startingLocation : string;
     destination : string;
-    status : 'canceled' | 'scheduled' |  'in progress' | 'done' ;
+    status : 'canceled' | 'in progress' | 'done' ;
 }
 
 
@@ -45,7 +43,7 @@ export class RideService {
 
         this.rides.push( {id: id, rideName : rideName ,idDriver: idDriver, maxPassengers: maxPassengers, requested: [], rejected: [], passengers : [],
         timeOfDeparture : timeOfDeparture, hourOfDeparture : hourOfDeparture, minuteOfDeparture : minuteOfDeparture,
-        startingLocation : startingLocation, destination : destination, status : 'scheduled'} )
+        startingLocation : startingLocation, destination : destination, status : 'in progress'} )
        
     }
 

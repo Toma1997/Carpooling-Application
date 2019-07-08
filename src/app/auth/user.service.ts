@@ -39,7 +39,8 @@ export class UserService {
     }
 
     profileToShow = 0;
-    loggedInUser : User;
+    // inicijalizovan nepostojeci korisnik samo da ne bi izbacivalo gresku u konzoli na pocetku
+    loggedInUser : User = {id: -1, email: "", password: "", firstName: "", lastName: "", phone: "", address: "", dateOfRegistration: new Date(), typeOfUser: "Passenger"};
 
 
     private listOfUsers : Array<User> = [];

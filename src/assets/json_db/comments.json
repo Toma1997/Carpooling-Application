@@ -12,8 +12,8 @@
         "comment" : "Brza i komforna voznja!"
     },
     {
-        "idFrom" : 0, 
-        "idTo": 1, 
+        "idFrom" : 2, 
+        "idTo": 0, 
         "date": "07/05/2019, 07:41:31 PM", 
         "comment" : "Vozac vrlo prijatan i odlicno vozi."
     }

@@ -27,6 +27,6 @@
         "minuteOfDeparture": 15, 
         "startingLocation" : "Kalemegdan", 
         "destination" : "Singidunum", 
-        "status" : "scheduled" 
+        "status" : "in progress" 
     }
 ]

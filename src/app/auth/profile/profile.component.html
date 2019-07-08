@@ -1,12 +1,7 @@
-<!-- <mat-form-field>
-  <input type="text" matInput placeholder="Address" [(ngModel)]="test" name="address"  required #adressInput="ngModel">
-</mat-form-field> -->
-
 
 <section fxLayoutAlign="center center" fxLayout="column">
 <mat-card class="example-card">
   <mat-card-header class="profile" fxLayoutAlign="center center">
-    <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>{{this.US.getProfileToShow().firstName}} {{this.US.getProfileToShow().lastName}}</mat-card-title>
     <mat-card-subtitle>{{this.US.getProfileToShow().typeOfUser}}</mat-card-subtitle>
   </mat-card-header>
@@ -14,7 +9,6 @@
   <mat-card-actions *ngIf="this.US.getProfileToShow()==this.US.getCurrentUser()" fxLayoutAlign="center center">
     <button mat-button *ngIf="!isEditing" mat-raised-button color="warn" (click)="isEditing=true">EDIT PROFILE</button>
 
-    <!-- <button mat-button>RATE</button> -->
   </mat-card-actions>
   <mat-divider></mat-divider>
   <section *ngIf="!isEditing" class="profiledata">
@@ -66,7 +60,7 @@
         </div>
       </mat-card>
     </div>
-    <form fxLayout="column" fxLayoutAlign="flex-start" fxLayoutGap="10px"
+    <form *ngIf="this.US.getProfileToShow() != this.US.getCurrentUser()" fxLayout="column" fxLayoutAlign="flex-start" fxLayoutGap="10px"
     #f2="ngForm" (ngSubmit)="onComment(f2)">
       <mat-form-field>
         <textarea matInput placeholder="Add a comment" ngModel name="comment"  [(ngModel)]=comment required #commentInput="ngModel"></textarea>
