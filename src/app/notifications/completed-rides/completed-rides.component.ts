@@ -23,19 +23,30 @@ export class CompletedRidesComponent implements OnInit {
   listCurrentUserFinishedRides(){
     var result = [];
       let rides = this.RS.getRides();
-      let currentUserId = this.US.getCurrentUser().id;
+      let currentUser = this.US.getCurrentUser();
 
       for(let i = 0; i < rides.length; i++){
         if(rides[i].status == "done"){
-          for(let j = 0; j < rides[i].passengers.length; j++){
-            if(rides[i].passengers[j] == currentUserId){
-              result.push(rides[i]);
+          if(currentUser.typeOfUser == "Driver" && rides[i].idDriver == currentUser.id){ // kada je korisnik vozac prikazi samo kada je on vozio
+            result.push(rides[i]);
+          } else if(currentUser.typeOfUser == "Passenger") { // kada je korisnik putnik onda prikaze samo voznje gde je on bio vozen
+            for(let j = 0; j < rides[i].passengers.length; j++){
+              if(rides[i].passengers[j] == currentUser.id){
+                result.push(rides[i]);
+              }
             }
           }
+          
         }
         
       }
       return result;
+  }
+
+  getPassengers(rideId: number){
+    let ride = this.RS.getRideById(rideId);
+    return ride.passengers;
+
   }
 
 }
