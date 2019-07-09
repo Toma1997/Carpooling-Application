@@ -9,7 +9,6 @@ export interface Ride {
     idDriver : number;
     maxPassengers : number;
     requested : number[];
-    rejected : number[];
     passengers : number[];
     timeOfDeparture : Date;
     hourOfDeparture : number;
@@ -41,7 +40,7 @@ export class RideService {
         var id = this.rides.length;
 
 
-        this.rides.push( {id: id, rideName : rideName ,idDriver: idDriver, maxPassengers: maxPassengers, requested: [], rejected: [], passengers : [],
+        this.rides.push( {id: id, rideName : rideName ,idDriver: idDriver, maxPassengers: maxPassengers, requested: [], passengers : [],
         timeOfDeparture : timeOfDeparture, hourOfDeparture : hourOfDeparture, minuteOfDeparture : minuteOfDeparture,
         startingLocation : startingLocation, destination : destination, status : 'in progress'} )
        
