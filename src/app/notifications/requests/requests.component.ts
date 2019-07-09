@@ -10,10 +10,9 @@ import { AppComponent } from '../../app.component';
 })
 export class RequestsComponent implements OnInit {
 
-  constructor(private US : UserService, private router: Router, private AppComponent : AppComponent) { }
-
-  hiddenApproved=false;
-  hiddenFinished=false;
+  constructor(private US : UserService, private router: Router, private AppComponent : AppComponent) { 
+    
+  }
 
   ngOnInit() {
     if(this.AppComponent.loggedIn == false){
@@ -21,11 +20,5 @@ export class RequestsComponent implements OnInit {
     }
   }
 
-  onApprovedBadge(){
-    this.hiddenApproved=true;
-  }
 
-  onFinishedBadge(){
-    this.hiddenFinished=true;
-  }
 }

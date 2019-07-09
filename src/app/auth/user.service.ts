@@ -139,7 +139,7 @@ export class UserService {
         sum = sum/results.length;
         
         final.push(sum);
-        final.push(results.length)
+        final.push(results.length);
         return final;
     }
 

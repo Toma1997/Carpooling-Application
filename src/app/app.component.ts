@@ -12,8 +12,6 @@ import { Location } from '@angular/common';
 export class AppComponent {
   title = 'Singidunum Carpooling';
 
-  hiddenBadge=false;
-
   route: string;
 
   constructor(private US : UserService, location: Location, private router : Router) {
@@ -48,10 +46,5 @@ export class AppComponent {
   myProfile(){
     this.US.profileToShow = this.US.loggedInUser.id;
   }
-
-  onBadge(){
-    this.hiddenBadge=true;
-  }
-
 
 }
