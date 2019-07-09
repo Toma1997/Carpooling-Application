@@ -32,8 +32,6 @@ export interface Rating {
 @Injectable()
 export class UserService {
 
-    // constructor(private AppComponent :  AppComponent, private router: Router) { }
-
     constructor(private http: HttpClient){
 
     }
@@ -78,54 +76,32 @@ export class UserService {
     }
 
     checkEmail(email:string) {
-        var results = [];
-        var searchField = "email";
-        var searchVal = email;
-        for (var i=0 ; i < this.listOfUsers.length ; i++)
-        {
-            if (this.listOfUsers[i][searchField] == searchVal) {
-                results.push(this.listOfUsers[i]);
+        for (var i=0 ; i < this.listOfUsers.length ; i++){
+            if (this.listOfUsers[i].email == email) {
+                return false;
             }
         }
-        if (results.length)
-            return false;
         return true;
     }
 
     checkEmailUpdate(email:string) {
-        var results = [];
-        var searchField = "email";
-        var searchVal = email;
-        for (var i=0 ; i < this.listOfUsers.length ; i++)
-        {
+        for (var i=0 ; i < this.listOfUsers.length ; i++){
             if (this.listOfUsers[i] != this.getCurrentUser()){
-                if (this.listOfUsers[i][searchField] == searchVal) {
-                    results.push(this.listOfUsers[i]);
+                if (this.listOfUsers[i].email == email) {
+                    return false;
                 }
             }
         }
-        if (results.length)
-            return false;
         return true;
     }
 
     checkLogin(email:string, password : string) {
-        var results = [];
-        var searchField = "email";
-        var searchVal = email;
-        for (var i=0 ; i < this.listOfUsers.length ; i++)
-        {
-            if (this.listOfUsers[i][searchField] == searchVal) {
-                results.push(this.listOfUsers[i]);
-            }
-        }
-
-        if (!results.length)
-            return false;
-        else{
-            if(results[0].password  ==  password){
-                this.loggedInUser = results[0];
-                return true;
+        for (var i=0 ; i < this.listOfUsers.length ; i++){
+            if (this.listOfUsers[i].email == email) {
+                if(this.listOfUsers[i].password  ==  password){
+                    this.loggedInUser = this.listOfUsers[i];
+                    return true;
+                }
             }
         }
         return false;
@@ -133,11 +109,8 @@ export class UserService {
 
     getCommentsForId(id : number)  {
         var results = [];
-        var searchField = "idTo";
-        var searchVal = id;
-        for (var i=0 ; i < this.listOfAllComments.length ; i++)
-        {
-            if (this.listOfAllComments[i][searchField] == searchVal) {
+        for (var i=0 ; i < this.listOfAllComments.length ; i++){
+            if (this.listOfAllComments[i].idTo == id) {
                 results.push(this.listOfAllComments[i]);
             }
         }
@@ -150,12 +123,10 @@ export class UserService {
 
     getRatingById(id: number){
         var results = [];
-        var searchField = "idTo";
-        var searchVal = id;
         var final = [];
         for (var i=0 ; i < this.listOfAllRatings.length ; i++)
         {
-            if (this.listOfAllRatings[i][searchField] == searchVal) {
+            if (this.listOfAllRatings[i].idTo == id) {
                 results.push(this.listOfAllRatings[i].rating);
             }
         }

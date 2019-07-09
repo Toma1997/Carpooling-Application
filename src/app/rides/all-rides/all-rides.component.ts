@@ -85,12 +85,7 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // TREBA DA SE PONOVO UCITA TABELA NAKON BRISANJA ILI IZMENE ALI NECE
-  ngOnChanges(){
-    this.rideToggle=true;
-    this.rideSource.data = this.RS.getRides();
-  }
-
+  // na klik Go dugmeta vozac zapocinje, a ako je putnik onda se samo prijavljuje za voznju
   requestOrStartRide(ride: Ride){
     if(this.US.getCurrentUser().id == ride.idDriver){ // vozac je kliknuo Go
       this.RS.getRides()[ride.id].status = "done";

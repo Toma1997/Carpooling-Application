@@ -36,18 +36,14 @@ export class SignupComponent implements OnInit {
       this.US.registerUser(form.value.email, form.value.password, form.value.firstName, form.value.lastName, form.value.phone, form.value.address, form.value.typeOfUser);
       const dialogRef = this.dialog.open(SuccessComponent);
   
-      
       dialogRef.afterClosed().subscribe(() => {
         this.AppComponent.setLoggedIn(true);
         this.RS.getJSONdata();
         this.router.navigate(['']);
       });
-    }
-    else{
+    } else {
       const dialogRef = this.dialog.open(FailComponent);
     }
-
-
   }
 
 }
