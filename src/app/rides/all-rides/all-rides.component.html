@@ -119,7 +119,7 @@
     <mat-cell *matCellDef="let row">
       <button [disabled]="this.passengerAppliedForRide(row.id)" *ngIf="row.status == 'in progress' && row.passengers.length < row.maxPassengers" mat-raised-button color="warn" (click)="requestOrStartRide(row)">Go!</button>
       <button *ngIf="this.US.getCurrentUser().id == row.idDriver && row.status == 'in progress'" mat-raised-button color="warn" (click)="editRide()">Edit</button>
-      <button *ngIf="this.US.getCurrentUser().id == row.idDriver" mat-raised-button color="warn" (click)="removeRide()">Remove</button>
+      <button *ngIf="this.US.getCurrentUser().id == row.idDriver" mat-raised-button color="warn" (click)="removeRide(row.id)">Remove</button>
     </mat-cell>
     </ng-container>
 

@@ -1,27 +1,13 @@
-<mat-card class="example-card">
+<mat-card class="example-card" *ngFor="let requestRidePair of listOfReceivedRequests()">
   <mat-card-header fxLayoutGap="5px">
-    <button mat-fab color="warn">Deny</button>
-    <button mat-fab color="accent">Approve</button>
-    <mat-card-title><font size="-1">Requested to join a ride: Prevoz studenata on Wed Jan 24 2019 15:15 from <a href="https://www.google.com/maps/dir/Republic+Square,+Trg+republike,+Beograd+11000/Danijelova+32/" target="_blank">Kalemegdan to Singidunum</a></font> </mat-card-title>
+    <button mat-fab color="warn" (click)="onDeny(requestRidePair.ride.id, requestRidePair.requestedId)">Deny</button>
+    <button mat-fab color="accent" (click)="onApprove(requestRidePair.ride.id, requestRidePair.requestedId)">Approve</button>
+    <mat-card-title><font size="-1">Requested to join a ride: {{requestRidePair.ride.rideName}} on {{requestRidePair.ride.timeOfDeparture}} from <a href="https://www.google.com/maps/dir/{{requestRidePair.ride.startingLocation}},+Beograd+11000/{{requestRidePair.ride.destination}}/" target="_blank">{{requestRidePair.ride.startingLocation}} to {{requestRidePair.ride.destination}}</a></font> </mat-card-title>
     <mat-card-subtitle>
-    <div fxLayoutAlign="start center" fxLayout="row" routerLink="/profile" (click)="this.US.profileToShow=0">
-      <a href="javascript:;">{{ this.US.getNameById(0) }}</a>
+    <div fxLayoutAlign="start center" fxLayout="row" routerLink="/profile" (click)="this.US.profileToShow=requestRidePair.requestedId">
+      <a href="javascript:;">{{ this.US.getNameById(requestRidePair.requestedId) }}</a>
       <mat-icon>stars</mat-icon>
-      {{this.US.getRatingById(0)[0]}}
-    </div>
-    </mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
-<mat-card class="example-card">
-  <mat-card-header fxLayoutGap="5px">
-    <button mat-fab color="warn">Deny</button>
-    <button mat-fab color="accent">Approve</button>
-    <mat-card-title><font size="-1">Requested to join a ride: Prevoz studenata on Wed Jan 24 2019 15:15 from <a href="https://www.google.com/maps/dir/Republic+Square,+Trg+republike,+Beograd+11000/Danijelova+32/" target="_blank">Kalemegdan to Singidunum</a></font> </mat-card-title>
-    <mat-card-subtitle>
-    <div fxLayoutAlign="start center" fxLayout="row" routerLink="/profile" (click)="this.US.profileToShow=1">
-      <a href="javascript:;">{{ this.US.getNameById(1) }}</a>
-      <mat-icon>stars</mat-icon>
-      {{this.US.getRatingById(1)[0]}}
+      {{this.US.getRatingById(requestRidePair.requestedId)[0]}}
     </div>
     </mat-card-subtitle>
   </mat-card-header>

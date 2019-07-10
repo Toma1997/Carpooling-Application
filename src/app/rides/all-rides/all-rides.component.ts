@@ -47,8 +47,8 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
   temp:number;
   rideToggle:boolean;
 
-  @ViewChild(MatSort) sort : MatSort;
-  @ViewChild(MatPaginator) paginator : MatPaginator;
+  @ViewChild(MatSort, {read: true, static: false}) sort : MatSort;
+  @ViewChild(MatPaginator, {read: true, static: false}) paginator : MatPaginator;
 
 
   constructor (private RS : RideService, private US : UserService, private router : Router, private AppComponent : AppComponent, private _formBuilder: FormBuilder, private dialog: MatDialog) {
@@ -105,7 +105,7 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
     let currentUser = this.US.getCurrentUser();
 
     // ako vozac nije resio sve zahteve od putnika
-    if(currentUser.id == this.RS.getDriverById(id).id && currentRide.requested.length > 0){
+    if(currentUser.id == currentRide.idDriver && currentRide.requested.length > 0){
       return true;
     }
 
@@ -124,8 +124,7 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
   }
 
   removeRide(id: number){
-    var foundRide : Ride = this.RS.getRideById(id);
-    this.RS.removeRide(foundRide);
+    this.RS.removeRide(this.RS.getRides()[id]);
     
   }
   
