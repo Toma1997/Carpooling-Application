@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { RideService } from '../ride.service';
 
 @Component({
   selector: 'app-edit-ride',
@@ -9,13 +10,13 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class EditRideComponent implements OnInit {
 
-  ride="Voznja 1";
-  dest="Danijelova  32";
-  sL="Usce shopping center";
-  sT= new Date();
-  sH="10";
-  sM="40";
-  p="4";
+  rideN="";
+  destin="";
+  startL="";
+  sTime= new Date();
+  sHour=-1;
+  sMinute=-1;
+  maxPass=0;
 
 
   rideFormGroup: FormGroup;
@@ -34,7 +35,7 @@ export class EditRideComponent implements OnInit {
   maxPassengers:number;
 
 
-  constructor( private dialogRef: MatDialogRef<EditRideComponent>, private _formBuilder: FormBuilder) { }
+  constructor(private RS: RideService, private dialogRef: MatDialogRef<EditRideComponent>, private _formBuilder: FormBuilder) { }
 
   
 
@@ -59,8 +60,40 @@ export class EditRideComponent implements OnInit {
     this.fifthFormGroup =  this._formBuilder.group({});
   }
   
-
   onClick(){
+    this.dialogRef.close();
+  }
+
+  onUpdate(){
+    let rides = this.RS.getRides();
+    if(this.rideN != ""){
+      rides[this.RS.editingRideId].rideName = this.rideN;
+    }
+    
+    if(this.destin != ""){
+      rides[this.RS.editingRideId].destination = this.destin;
+    }
+
+    if(this.startL != ""){
+      rides[this.RS.editingRideId].startingLocation = this.startL;
+    }
+
+    if(this.sTime > new Date()){
+      rides[this.RS.editingRideId].timeOfDeparture = this.sTime;
+    }
+
+    if(this.sHour >= 0){
+      rides[this.RS.editingRideId].hourOfDeparture = this.sHour;
+    }
+
+    if(this.sMinute >= 0){
+      rides[this.RS.editingRideId].minuteOfDeparture = this.sMinute;
+    }
+
+    if(this.maxPass > 0){
+      rides[this.RS.editingRideId].maxPassengers = this.maxPass;
+    }
+    
     this.dialogRef.close();
   }
 

@@ -47,8 +47,13 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
   temp:number;
   rideToggle:boolean;
 
-  @ViewChild(MatSort, {read: true, static: false}) sort : MatSort;
-  @ViewChild(MatPaginator, {read: true, static: false}) paginator : MatPaginator;
+  // ZA WIN
+  @ViewChild(MatSort) sort : MatSort;
+  @ViewChild(MatPaginator) paginator : MatPaginator;
+
+  // ZA MAC
+  //@ViewChild(MatSort, {read: true, static: false}) sort : MatSort;
+  //@ViewChild(MatPaginator, {read: true, static: false}) paginator : MatPaginator;
 
 
   constructor (private RS : RideService, private US : UserService, private router : Router, private AppComponent : AppComponent, private _formBuilder: FormBuilder, private dialog: MatDialog) {
@@ -95,7 +100,8 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(RequestRideComponent);
   }
 
-  editRide(){
+  editRide(id: number){
+    this.RS.editingRideId = id;
     const dialogRef = this.dialog.open(EditRideComponent);
   }
 
@@ -105,7 +111,8 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
     let currentUser = this.US.getCurrentUser();
 
     // ako vozac nije resio sve zahteve od putnika
-    if(currentUser.id == currentRide.idDriver && currentRide.requested.length > 0){
+    if( (currentUser.id == currentRide.idDriver && currentRide.requested.length > 0) ||
+      (currentUser.id != currentRide.idDriver && currentRide.passengers.length >= currentRide.maxPassengers)){
       return true;
     }
 
@@ -123,10 +130,10 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
     return false;
   }
 
-  removeRide(id: number){
-    this.RS.removeRide(this.RS.getRides()[id]);
-    
+  removeRide(rideId: number){
+    this.RS.removeRide(rideId);
   }
+  
   
   ngAfterViewInit() {
     this.rideSource.sort = this.sort;

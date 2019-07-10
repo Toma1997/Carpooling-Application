@@ -7,7 +7,7 @@
         "lastName": "Joksimovic", 
         "phone": "063334774", 
         "address": "Kraljice Katarine 33", 
-        "dateOfRegistration": "05/01/2019, 10:49:36 AM", 
+        "dateOfRegistration": "05/01/2019", 
         "typeOfUser": "Passenger"
     },
     {
@@ -18,7 +18,7 @@
         "lastName": "Babic", 
         "phone": "069123456", 
         "address": "Resavska 1", 
-        "dateOfRegistration": "06/15/2019, 09:19:36 PM", 
+        "dateOfRegistration": "06/15/2019", 
         "typeOfUser": "Driver"
     },
     {
@@ -29,7 +29,7 @@
         "lastName": "Cejic", 
         "phone": "123222222", 
         "address": "Beogradska 2", 
-        "dateOfRegistration": "07/01/2019, 09:19:36 AM", 
+        "dateOfRegistration": "07/01/2019", 
         "typeOfUser": "Driver"
     }
 ]

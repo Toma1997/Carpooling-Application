@@ -2,10 +2,10 @@
   <section fxLayout="column" fxLayoutAlign="center center">
     <mat-vertical-stepper [linear]=false #stepper  >
       <mat-step [stepControl]="rideFormGroup">
-        <form [formGroup]="rideFormGroup" (ngSubmit)="form6()" #formsix="ngForm" >
+        <form [formGroup]="rideFormGroup" #formsix="ngForm" >
           <ng-template matStepLabel>Enter the name of the ride</ng-template>
           <mat-form-field>
-            <input matInput placeholder="Ride name" formControlName="rideNameFF" [(ngModel)]=ride required>
+            <input matInput placeholder="Ride name" formControlName="rideNameFF" [(ngModel)]=rideN required>
           </mat-form-field>
           <div>
             <button mat-button matStepperNext>Next</button>
@@ -13,10 +13,10 @@
         </form>
       </mat-step>
       <mat-step>
-        <form [formGroup]="firstFormGroup" (ngSubmit)="form1()" #formone="ngForm" >
+        <form [formGroup]="firstFormGroup" #formone="ngForm" >
           <ng-template matStepLabel>Fill out your desination</ng-template>
           <mat-form-field>
-            <input matInput placeholder="Address" formControlName="DestinationFF" [(ngModel)]=dest required>
+            <input matInput placeholder="Address" formControlName="DestinationFF" [(ngModel)]=destin required>
           </mat-form-field>
           <div>
             <button mat-button matStepperPrevious>Back</button>
@@ -25,10 +25,10 @@
         </form>
       </mat-step>
       <mat-step [stepControl]="thirdFormGroup">
-        <form [formGroup]="thirdFormGroup" (ngSubmit)="form3()" #formthree="ngForm" >
+        <form [formGroup]="thirdFormGroup" #formthree="ngForm" >
           <ng-template matStepLabel>Fill out your starting location</ng-template>
           <mat-form-field>
-            <input matInput placeholder="Address" formControlName="startingLocationFF" [(ngModel)]=sL required>
+            <input matInput placeholder="Address" formControlName="startingLocationFF" [(ngModel)]=startL required>
           </mat-form-field>
           <div>
               <button mat-button matStepperPrevious>Back</button>
@@ -37,21 +37,21 @@
         </form>
       </mat-step>
       <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup" (ngSubmit)="form2()" #formtwo="ngForm" fxLayoutAlign="center start" fxLayout="column">
+        <form [formGroup]="secondFormGroup" #formtwo="ngForm" fxLayoutAlign="center start" fxLayout="column">
           <ng-template matStepLabel>Choose date and time of departure</ng-template>
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="timeOfDepartureFF" [(ngModel)]=sT required>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="timeOfDepartureFF" [(ngModel)]=sTime required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <div fxLayout="row">
             <mat-form-field appearance="outline">
               <mat-label>Hour of departure</mat-label>
-              <input type="number" matInput placeholder="Please use 24hr format" formControlName="hourOfDepartureFF" [(ngModel)]=sH required min="0" max="23"> 
+              <input type="number" matInput placeholder="Please use 24hr format" formControlName="hourOfDepartureFF" [(ngModel)]=sHour required min="0" max="23"> 
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Minute of departure</mat-label>
-              <input type="number"  matInput placeholder formControlName="minuteOfDepartureFF" [(ngModel)]=sM required min="0" max="59" >
+              <input type="number"  matInput placeholder formControlName="minuteOfDepartureFF" [(ngModel)]=sMinute required min="0" max="59" >
             </mat-form-field>
           </div>
           <div>
@@ -61,10 +61,10 @@
         </form>
       </mat-step>
       <mat-step [stepControl]="fourthFormGroup">
-        <form [formGroup]="fourthFormGroup" (ngSubmit)="form4()" #formfour="ngForm" fxLayoutAlign="center start" fxLayout="column">
+        <form [formGroup]="fourthFormGroup" #formfour="ngForm" fxLayoutAlign="center start" fxLayout="column">
           <ng-template matStepLabel>Enter the number of max passengers</ng-template>
           <mat-form-field>
-            <input type="number" matInput placeholder formControlName="maxPassengersFF" [(ngModel)]=p required min="1">
+            <input type="number" matInput placeholder formControlName="maxPassengersFF" [(ngModel)]=maxPass required min="this.RS.getRides()[this.RS.editingRideId].passengers">
           </mat-form-field>
           <div>
               <button mat-button matStepperPrevious>Back</button>
@@ -77,9 +77,7 @@
 
 
   <mat-card-actions fxLayoutAlign="center" fxLayoutGap="10px">
-    <button type="submit" mat-stroked-button color="warn"
-    (click)="onClick()">CANCEL</button>
-    <button type="submit" mat-raised-button color="warn"
-    (click)="onClick()">OK</button>
+    <button type="submit" mat-stroked-button color="warn" (click)="onClick()">CANCEL</button>
+    <button type="submit" mat-raised-button color="warn" (click)="onUpdate()">OK</button>
   </mat-card-actions>
 </mat-dialog-content>

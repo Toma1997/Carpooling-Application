@@ -27,6 +27,7 @@ export class RideService {
     }
 
     private rides : Array<Ride> = [];
+    public editingRideId: number;
 
     getJSONdata(){
         this.http.get<Ride[]>("../../assets/json_db/rides.json").subscribe(data => this.rides = data);
@@ -67,9 +68,9 @@ export class RideService {
         return foundRide;
     }
 
-    removeRide(rideToDelete: Ride) {
+    removeRide(rideToDeleteId: number) {
         this.rides = this.rides.filter(ride => 
-            ride.id != rideToDelete.id);
+            ride.id != rideToDeleteId);
     } 
     
 }
