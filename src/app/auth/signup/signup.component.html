@@ -1,6 +1,6 @@
 <section>
   <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
-  #f="ngForm" (ngSubmit)="onSubmit(f)">
+  #f="ngForm">
   <!-- <font *ngIf="emailInUse" color="red">Email already in use. Please enter another email address!</font> -->
     <mat-form-field hintLabel="This will be used for signing in.">
       <mat-label>Your email</mat-label>
@@ -56,8 +56,6 @@
     <mat-checkbox color="warn" ngModel name="acceptance" required></mat-checkbox>
     I accept the <a href="javascript:;" (click)="onTos()">terms and conditions</a> of use.
   </div>
-
-
     <button type="submit" mat-raised-button color="warn" (click)="onSubmit(f)" [disabled]="f.invalid">
       Sign up!
     </button>

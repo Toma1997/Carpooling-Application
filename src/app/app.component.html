@@ -18,9 +18,9 @@
         <mat-icon>directions_car</mat-icon>
         Rides
       </a>
-      <a *ngIf="loggedIn" mat-list-item routerLink="/notifications" (click)="sidenav.close();onBadge()">
+      <a *ngIf="loggedIn" mat-list-item routerLink="/notifications" (click)="sidenav.close();">
         <mat-icon>calendar_view_day</mat-icon>
-        <a><span matBadge="3" matBadgeOverlap="true" matBadgeColor="white" [matBadgeHidden]=hiddenBadge>Actions</span></a>
+        <span>Actions</span>
       </a>
       
       <a *ngIf="loggedIn && this.US.getCurrentUser().typeOfUser == 'Driver'" mat-list-item routerLink="/new-ride" (click)="sidenav.close()">
@@ -50,7 +50,7 @@
             <a routerLink="">Home</a>
             <a *ngIf="!loggedIn" routerLink="/signup">Register</a>
             <a *ngIf="!loggedIn" routerLink="/login">Log in</a>
-            <a *ngIf="loggedIn" routerLink="/notifications" (click)="onBadge()"><span matBadge="3" matBadgeOverlap="true" matBadgeColor="foreground" [matBadgeHidden]=hiddenBadge >Actions</span></a>
+            <a *ngIf="loggedIn" routerLink="/notifications"><span>Actions</span></a>
             <a *ngIf="loggedIn && this.US.getCurrentUser().typeOfUser == 'Driver'" routerLink="/new-ride">New Ride</a>
             <a *ngIf="loggedIn" routerLink="/all-rides">Rides</a>
             <div *ngIf="loggedIn" [matMenuTriggerFor]="menu" >

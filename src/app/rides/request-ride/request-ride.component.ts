@@ -17,4 +17,5 @@ export class RequestRideComponent implements OnInit {
   onClick(){
     this.dialogRef.close();
   }
+
 }

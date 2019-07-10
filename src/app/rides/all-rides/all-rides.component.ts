@@ -85,18 +85,42 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // TREBA DA SE PONOVO UCITA TABELA NAKON BRISANJA ILI IZMENE ALI NECE
-  ngOnChanges(){
-    this.rideToggle=true;
-    this.rideSource.data = this.RS.getRides();
-  }
-
-  requestRide(){
+  // na klik Go dugmeta vozac zapocinje, a ako je putnik onda se samo prijavljuje za voznju
+  requestOrStartRide(ride: Ride){
+    if(this.US.getCurrentUser().id == ride.idDriver){ // vozac je kliknuo Go
+      this.RS.getRides()[ride.id].status = "done";
+    } else {
+      this.RS.getRides()[ride.id].requested.push(this.US.getCurrentUser().id);
+    }
     const dialogRef = this.dialog.open(RequestRideComponent);
   }
 
   editRide(){
     const dialogRef = this.dialog.open(EditRideComponent);
+  }
+
+  passengerAppliedForRide(id: number) : boolean{
+
+    let currentRide = this.RS.getRideById(id);
+    let currentUser = this.US.getCurrentUser();
+
+    // ako vozac nije resio sve zahteve od putnika
+    if(currentUser.id == this.RS.getDriverById(id).id && currentRide.requested.length > 0){
+      return true;
+    }
+
+    // provere da li je putnik vec slao zahtev ili je prihvacen
+    for(let i = 0; i < currentRide.requested.length; i++){
+      if(currentRide.requested[i] == currentUser.id){
+        return true;
+      }
+    }
+    for(let i = 0; i < currentRide.passengers.length; i++){
+      if(currentRide.passengers[i] == currentUser.id){
+        return true;
+      }
+    }
+    return false;
   }
 
   removeRide(id: number){

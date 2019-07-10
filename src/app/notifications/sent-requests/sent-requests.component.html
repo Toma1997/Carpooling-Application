@@ -1,12 +1,12 @@
-<mat-card class="example-card">
+<mat-card class="example-card" *ngFor="let ride of this.listCurrentUserSentRequests()">
     <mat-card-header>
-      <button mat-fab color="warn">Cancel</button>
-      <mat-card-title><font size="-1">Prevoz studenata on Wed Jan 24 2019 15:15 from <a href="https://www.google.com/maps/dir/Republic+Square,+Trg+republike,+Beograd+11000/Danijelova+32/" target="_blank">Kalemegdan to Singidunum</a></font> </mat-card-title>
+      <button mat-fab color="warn" (click)="onCancel(ride.id)">Cancel</button>
+      <mat-card-title><font size="-1">{{ride.rideName}} on {{ride.timeOfDeparture}} from <a href="https://www.google.com/maps/dir/{{ride.startingLocation}},+Beograd+11000/{{ride.destination}}/" target="_blank">{{ride.startingLocation}} to {{ride.destination}}</a></font> </mat-card-title>
       <mat-card-subtitle>
-      <div fxLayoutAlign="start center" fxLayout="row" routerLink="/profile" (click)="this.US.profileToShow=2">
-        <a href="javascript:;">{{ this.US.getNameById(2) }}</a>
+      <div fxLayoutAlign="start center" fxLayout="row" routerLink="/profile" (click)="this.US.profileToShow=ride.idDriver">
+        <a href="javascript:;">{{ this.US.getNameById(ride.idDriver) }}</a>
         <mat-icon>stars</mat-icon>
-        {{this.US.getRatingById(2)[0]}}
+        {{this.US.getRatingById(ride.idDriver)[0]}}
       </div>
       </mat-card-subtitle>
     </mat-card-header>
