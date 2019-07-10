@@ -1,18 +1,25 @@
-<section fxFlex FxLayout="column" fxLayoutGap="10px">
-<div FxLayout="row">
-  <p>Rate Driver: Pera Peric</p> <ng5-slider style="color:rgb(255, 72, 0);" [(value)]="value" [options]="options"></ng5-slider>
-</div>
-<div FxLayout="row">
-  <p>Rate Passenger: Mika Mikic</p> <ng5-slider style="color:rgb(255, 72, 0);" [(value)]="value2" [options]="options"></ng5-slider>
-</div>
-<div FxLayout="row">
-    <p>Rate Passenger: Marko Petrovic</p> <ng5-slider style="color:rgb(255, 72, 0);" [(value)]="value3" [options]="options"></ng5-slider>
+<section *ngIf="this.US.getCurrentUser().typeOfUser == 'Passenger'" fxFlex FxLayout="column" fxLayoutGap="10px">
+  <div FxLayout="row">
+    <p>Rate Driver: Pera Peric</p> <ng5-slider style="color:rgb(255, 72, 0);" [(value)]="value" [options]="options"></ng5-slider>
   </div>
 
-<mat-card-actions fxLayoutAlign="center" fxLayoutGap="10px">
-    <button type="submit" mat-stroked-button color="warn"
-    (click)="onClick()">CANCEL</button>
-    <button type="submit" mat-raised-button color="warn"
-    (click)="onClick()">OK</button>
-</mat-card-actions>
+  <mat-card-actions fxLayoutAlign="center" fxLayoutGap="10px">
+      <button type="submit" mat-stroked-button color="warn"
+      (click)="onClick()">CANCEL</button>
+      <button type="submit" mat-raised-button color="warn"
+      (click)="onConfirm()">OK</button>
+  </mat-card-actions>
+</section>
+
+<section *ngIf="this.US.getCurrentUser().typeOfUser == 'Driver'" fxFlex FxLayout="column" fxLayoutGap="10px">
+  <div *ngFor="let passenger of this.passengersOfThisRide()" FxLayout="row">
+    <p>Rate Passenger: Pera Peric</p> <ng5-slider style="color:rgb(255, 72, 0);" [(value)]="value" [options]="options"></ng5-slider>
+  </div>
+
+  <mat-card-actions fxLayoutAlign="center" fxLayoutGap="10px">
+      <button type="submit" mat-stroked-button color="warn"
+      (click)="onClick()">CANCEL</button>
+      <button type="submit" mat-raised-button color="warn"
+      (click)="onConfirm()">OK</button>
+  </mat-card-actions>
 </section>
