@@ -68,9 +68,9 @@ export class RideService {
         return foundRide;
     }
 
-    removeRide(rideToDeleteId: number) {
+    removeRide(removingRideId: number) {
         this.rides = this.rides.filter(ride => 
-            ride.id != rideToDeleteId);
+            ride.id != removingRideId);
     } 
     
 }

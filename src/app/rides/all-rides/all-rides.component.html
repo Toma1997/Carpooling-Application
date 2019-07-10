@@ -55,7 +55,7 @@
 
 <mat-table [dataSource]="rideSource" matSort>
     <ng-container matColumnDef="rideName" sticky>
-    <mat-header-cell *matHeaderCellDef mat-sort-header fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px" >
+    <mat-header-cell *matHeaderCellDef mat-sort-header fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px" color="warn">
       {{rideToggle ? 'All rides' : 'My rides'}}
     <mat-slide-toggle [(ngModel)]="rideToggle"></mat-slide-toggle>
     </mat-header-cell>
@@ -117,7 +117,7 @@
     <ng-container matColumnDef="action">
     <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <button [disabled]="this.passengerAppliedForRide(row.id)" *ngIf="row.status == 'in progress'" mat-raised-button color="warn" (click)="requestOrStartRide(row)">Go!</button>
+      <button [disabled]="this.passengerAppliedForRide(row.id)" mat-raised-button color="warn" (click)="requestOrStartRide(row)">Go!</button>
       <button *ngIf="this.US.getCurrentUser().id == row.idDriver && row.status == 'in progress'" mat-raised-button color="warn" (click)="editRide(row.id)">Edit</button>
       <button *ngIf="this.US.getCurrentUser().id == row.idDriver" mat-raised-button color="warn" (click)="this.removeRide(row.id)">Remove</button>
     </mat-cell>

@@ -107,23 +107,29 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
 
   passengerAppliedForRide(id: number) : boolean{
 
-    let currentRide = this.RS.getRideById(id);
+    let rides = this.RS.getRides();
     let currentUser = this.US.getCurrentUser();
 
+    console.log(rides[id]);
+
+    if(rides[id].status != "in progress"){
+      return true;
+    }
+
     // ako vozac nije resio sve zahteve od putnika
-    if( (currentUser.id == currentRide.idDriver && currentRide.requested.length > 0) ||
-      (currentUser.id != currentRide.idDriver && currentRide.passengers.length >= currentRide.maxPassengers)){
+    if( (currentUser.id == rides[id].idDriver && rides[id].requested.length > 0) ||
+      (currentUser.id != rides[id].idDriver && rides[id].passengers.length >= rides[id].maxPassengers)){
       return true;
     }
 
     // provere da li je putnik vec slao zahtev ili je prihvacen
-    for(let i = 0; i < currentRide.requested.length; i++){
-      if(currentRide.requested[i] == currentUser.id){
+    for(let i = 0; i < rides[id].requested.length; i++){
+      if(rides[id].requested[i] == currentUser.id){
         return true;
       }
     }
-    for(let i = 0; i < currentRide.passengers.length; i++){
-      if(currentRide.passengers[i] == currentUser.id){
+    for(let i = 0; i < rides[id].passengers.length; i++){
+      if(rides[id].passengers[i] == currentUser.id){
         return true;
       }
     }
@@ -132,6 +138,7 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
 
   removeRide(rideId: number){
     this.RS.removeRide(rideId);
+    this.ngOnInit();
   }
   
   

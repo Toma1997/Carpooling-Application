@@ -90,7 +90,7 @@ export class NewRideComponent{
   
       
     dialogRef.afterClosed().subscribe(() => {
-      this.router.navigate(['']);
+      this.router.navigate(['/all-rides']);
     });
   }
 
