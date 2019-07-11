@@ -57,21 +57,22 @@ export class UserService {
     httpOptions = {
         headers: new HttpHeaders({
           'Content-Type':  'application/json',
-          'Authorization': 'my-auth-token'
+          'Authorization': 'my-auth-token',
+          'Access-Control-Allow-Origin': '*'
         })
       };
 
     saveDataToJSON(){
-        this.http.put<User[]>("../../assets/json_db/users.json", JSON.stringify(this.listOfUsers), this.httpOptions).subscribe(
-            data  => { console.log("PUT Request is successful ", data);},
+        this.http.post<User[]>("http://localhost:8080/users", JSON.stringify(this.listOfUsers), this.httpOptions).subscribe(
+            data  => { console.log("POST Request is successful ", data);},
             error  => {console.log("Error", error);}
             );
-        this.http.put<Comment[]>("../../assets/json_db/comments.json", JSON.stringify(this.listOfAllComments), this.httpOptions).subscribe(
-            data  => { console.log("PUT Request is successful ", data);},
+        this.http.post<Comment[]>("http://localhost:8080/comments", JSON.stringify(this.listOfAllComments), this.httpOptions).subscribe(
+            data  => { console.log("POST Request is successful ", data);},
             error  => {console.log("Error", error);}
             );
-        this.http.put<Rating[]>("../../assets/json_db/rates.json", JSON.stringify(this.listOfAllRatings), this.httpOptions).subscribe(
-            data  => { console.log("PUT Request is successful ", data);},
+        this.http.post<Rating[]>("http://localhost:8080/ratings", JSON.stringify(this.listOfAllRatings), this.httpOptions).subscribe(
+            data  => { console.log("POST Request is successful ", data);},
             error  => {console.log("Error", error);}
             );
     }

@@ -1,3 +1,0 @@
-TREBA DODATNO IMPLEMENTIRATI SLEDECE:
-
-1) VOZAC - USPUTNA STAJALISTA (od 2. putnika pocetna polazista)

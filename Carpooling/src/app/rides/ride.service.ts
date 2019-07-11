@@ -38,13 +38,14 @@ export class RideService {
     httpOptions = {
         headers: new HttpHeaders({
           'Content-Type':  'application/json',
-          'Authorization': 'my-auth-token'
+          'Authorization': 'my-auth-token',
+          'Access-Control-Allow-Origin': '*'
         })
       };
 
     saveDataToJSON(){
-        this.http.put<Ride[]>("../../assets/json_db/rides.json", JSON.stringify(this.rides), this.httpOptions).subscribe(
-            data  => { console.log("PUT Request is successful ", data);},
+        this.http.post<Ride[]>("http://localhost:8080/rides", JSON.stringify(this.rides), this.httpOptions).subscribe(
+            data  => { console.log("POST Request is successful ", data);},
             error  => {console.log("Error", error);}
             );
     }
