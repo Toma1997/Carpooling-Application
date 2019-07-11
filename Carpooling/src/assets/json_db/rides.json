@@ -39,7 +39,7 @@
         "minuteOfDeparture": 17, 
         "startingLocation" : "Pozeska 65", 
         "destination" : "Kumodraska 261a", 
-        "status" : "done" 
+        "status" : "in progress" 
     },
     {
         "id": 3, 
@@ -53,6 +53,6 @@
         "minuteOfDeparture": 49, 
         "startingLocation" : "Kneza Viseslava 120", 
         "destination" : "Kumodraska 261a", 
-        "status" : "done" 
+        "status" : "in progress" 
     }
 ]
