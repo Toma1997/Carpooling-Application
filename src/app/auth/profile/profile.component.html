@@ -123,9 +123,9 @@
   <mat-form-field appearance="outline" floatPlaceholder="always" floatLabel="always" class="mat-form-field--no-underline">
       <mat-label>Account type</mat-label>
     <input matInput placeholder style="display: none">
-    <mat-radio-group ngModel name="typeOfUser" [(ngModel)]=typeOfUser required #typeOfUserInput="ngModel" fxLayout fxLayoutAlign="center" fxLayoutGap="20px">
-      <mat-radio-button value="Driver">Driver</mat-radio-button>
-      <mat-radio-button value="Passenger">Passenger</mat-radio-button>
+    <mat-radio-group color="warn" ngModel name="typeOfUser" [(ngModel)]=typeOfUser required #typeOfUserInput="ngModel" fxLayout fxLayoutAlign="center" fxLayoutGap="20px">
+      <mat-radio-button color="warn" value="Driver">Driver</mat-radio-button>
+      <mat-radio-button color="warn" value="Passenger">Passenger</mat-radio-button>
     </mat-radio-group>
   </mat-form-field>
 
@@ -137,7 +137,6 @@
     UPDATE PROFILE
   </button>
   </div>
-  <!-- <font *ngIf="emailInUse" color="red">Email already in use. Please enter another email address!</font> -->
   
   </form>
   </section>

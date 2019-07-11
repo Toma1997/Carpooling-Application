@@ -50,4 +50,15 @@ export class CompletedRidesComponent implements OnInit {
 
   }
 
+  isRated(rideId: number){
+    let result = false;
+    this.US.getCurrentUser().ratedRides.forEach(id => {
+      if(id == rideId){
+        result = true;
+        return;
+      }
+    });
+    return result;
+  }
+
 }

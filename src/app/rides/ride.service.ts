@@ -43,7 +43,10 @@ export class RideService {
       };
 
     saveDataToJSON(){
-        this.http.post<Ride[]>("../../assets/json_db/rides.json", this.rides, this.httpOptions);
+        this.http.put<Ride[]>("../../assets/json_db/rides.json", JSON.stringify(this.rides), this.httpOptions).subscribe(
+            data  => { console.log("PUT Request is successful ", data);},
+            error  => {console.log("Error", error);}
+            );
     }
 
     getRides() {

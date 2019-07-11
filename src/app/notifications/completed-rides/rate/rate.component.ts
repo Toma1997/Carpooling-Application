@@ -50,6 +50,7 @@ export class RateComponent implements OnInit {
       let idTo = this.RS.getRideById(this.RS.ratingRideId).idDriver;
       this.US.addRating(idFrom, idTo, this.driverRate);
     }
+    this.US.getCurrentUser().ratedRides.push(this.RS.ratingRideId);
     this.dialogRef.close();
   }
 

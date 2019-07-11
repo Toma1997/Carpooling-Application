@@ -14,6 +14,7 @@ export interface User {
     address: string;
     dateOfRegistration : Date;
     typeOfUser : 'Driver' | 'Passenger';
+    ratedRides: number[];
 }
 
 export interface Comment {
@@ -38,7 +39,7 @@ export class UserService {
 
     profileToShow = 0;
     // inicijalizovan nepostojeci korisnik samo da ne bi izbacivalo gresku u konzoli na pocetku
-    loggedInUser : User = {id: -1, email: "", password: "", firstName: "", lastName: "", phone: "", address: "", dateOfRegistration: new Date(), typeOfUser: "Passenger"};
+    loggedInUser : User = {id: -1, email: "", password: "", firstName: "", lastName: "", phone: "", address: "", dateOfRegistration: new Date(), typeOfUser: "Passenger", ratedRides: []};
 
 
     private listOfUsers : Array<User> = [];
@@ -61,9 +62,18 @@ export class UserService {
       };
 
     saveDataToJSON(){
-        this.http.post<User[]>("../../assets/json_db/users.json", this.listOfUsers, this.httpOptions);
-        this.http.post<Comment[]>("../../assets/json_db/comments.json", this.listOfAllComments, this.httpOptions);
-        this.http.post<Rating[]>("../../assets/json_db/rates.json", this.listOfAllRatings, this.httpOptions);
+        this.http.put<User[]>("../../assets/json_db/users.json", JSON.stringify(this.listOfUsers), this.httpOptions).subscribe(
+            data  => { console.log("PUT Request is successful ", data);},
+            error  => {console.log("Error", error);}
+            );
+        this.http.put<Comment[]>("../../assets/json_db/comments.json", JSON.stringify(this.listOfAllComments), this.httpOptions).subscribe(
+            data  => { console.log("PUT Request is successful ", data);},
+            error  => {console.log("Error", error);}
+            );
+        this.http.put<Rating[]>("../../assets/json_db/rates.json", JSON.stringify(this.listOfAllRatings), this.httpOptions).subscribe(
+            data  => { console.log("PUT Request is successful ", data);},
+            error  => {console.log("Error", error);}
+            );
     }
 
 
@@ -83,7 +93,7 @@ export class UserService {
     registerUser(email : string, password : string, firstName : string, lastName : string, phone: string, address : string, typeOfUser ){
         var id = this.getListOfUsers()[this.getListOfUsers().length - 1].id + 1;
 
-        this.listOfUsers.push( {id, email,password, firstName, lastName, phone, address, typeOfUser, dateOfRegistration: new Date()} )
+        this.listOfUsers.push( {id, email,password, firstName, lastName, phone, address, typeOfUser, dateOfRegistration: new Date(), ratedRides: []} )
         this.loggedInUser = this.getListOfUsers()[this.getListOfUsers().length - 1];
 
     }

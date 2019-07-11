@@ -8,7 +8,8 @@
         "phone": "063334774", 
         "address": "Kraljice Katarine 33", 
         "dateOfRegistration": "05/01/2019", 
-        "typeOfUser": "Passenger"
+        "typeOfUser": "Passenger",
+        "ratedRides": []
     },
     {
         "id": 1, 
@@ -19,7 +20,8 @@
         "phone": "069123456", 
         "address": "Resavska 1", 
         "dateOfRegistration": "06/15/2019", 
-        "typeOfUser": "Driver"
+        "typeOfUser": "Driver",
+        "ratedRides": []
     },
     {
         "id": 2, 
@@ -30,6 +32,7 @@
         "phone": "123222222", 
         "address": "Beogradska 2", 
         "dateOfRegistration": "07/01/2019", 
-        "typeOfUser": "Driver"
+        "typeOfUser": "Driver",
+        "ratedRides": []
     }
 ]
