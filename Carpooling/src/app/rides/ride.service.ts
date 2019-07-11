@@ -88,6 +88,14 @@ export class RideService {
     removeRide(removingRideId: number) {
         this.rides = this.rides.filter(ride => 
             ride.id != removingRideId);
-    } 
+    }
+    
+    getMidLocations(ridePassengers: Array<number>){
+        let result = "";
+        for(let i = 0; i < ridePassengers.length; i++){
+            result += "/" + this.UserService.getUserById(ridePassengers[i]).address;
+        }
+        return result;
+    }
     
 }

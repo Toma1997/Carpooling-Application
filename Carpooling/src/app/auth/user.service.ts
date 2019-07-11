@@ -86,6 +86,18 @@ export class UserService {
         return this.loggedInUser;
     }
 
+    getUserById(id: number){
+        
+        var foundUser: User;
+        this.listOfUsers.forEach(user => {
+            if (user.id == id) {
+                foundUser = user;
+            }
+        });
+        return foundUser;
+        
+    }
+
 
     getProfileToShow(){
         return this.getListOfUsers()[this.profileToShow];

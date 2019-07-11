@@ -1,6 +1,6 @@
 <mat-card class="example-card" *ngFor="let ride of this.listCurrentUserApprovedRides()">
   <mat-card-header>
-    <mat-card-title><font size="-1">Your ride has been approved: {{ride.rideName}} on {{ride.timeOfDeparture}}, , {{ride.hourOfDeparture}}:{{ride.minuteOfDeparture}} from <a href="https://www.google.com/maps/dir/{{ride.startingLocation}},+Beograd+11000/{{ride.destination}}/" target="_blank">{{ride.startingLocation}} to {{ride.destination}}</a></font> </mat-card-title>
+    <mat-card-title><font size="-1">Your ride has been approved: {{ride.rideName}} on {{ride.timeOfDeparture}}, , {{ride.hourOfDeparture}}:{{ride.minuteOfDeparture}} from <a href="https://www.google.com/maps/dir/{{ride.startingLocation}}{{this.RS.getMidLocations(ride.passengers)}},+Beograd+11000/{{ride.destination}}/" target="_blank">{{ride.startingLocation}} to {{ride.destination}}</a></font> </mat-card-title>
     <mat-card-subtitle>
     <div fxLayoutAlign="start center" fxLayout="row" routerLink="/profile" (click)="this.US.profileToShow=ride.idDriver">
       <a href="javascript:;">{{ this.US.getNameById(ride.idDriver) }}</a>

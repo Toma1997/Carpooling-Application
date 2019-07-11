@@ -41,6 +41,7 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
   fourthFormGroup : FormGroup;
   fifthFormGroup : FormGroup;
 
+  
 
   displayedColumns = ["rideName","idDriver","timeOfDeparture", "hourOfDeparture","minuteOfDeparture","startingLocation", "destination", "passengers",  "maxPassengers", "status", "action"];
   rideSource = new MatTableDataSource<Ride>();

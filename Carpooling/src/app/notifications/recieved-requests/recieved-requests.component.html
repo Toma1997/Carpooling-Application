@@ -2,7 +2,7 @@
   <mat-card-header fxLayoutGap="5px">
     <button mat-fab color="warn" (click)="onDeny(requestRidePair.ride.id, requestRidePair.requestedId)">Deny</button>
     <button *ngIf="requestRidePair.ride.passengers.length < requestRidePair.ride.maxPassengers" mat-fab color="accent" (click)="onApprove(requestRidePair.ride.id, requestRidePair.requestedId)">Approve</button>
-    <mat-card-title><font size="-1">Requested to join a ride: {{requestRidePair.ride.rideName}} on {{requestRidePair.ride.timeOfDeparture}}, {{requestRidePair.ride.hourOfDeparture}}:{{requestRidePair.ride.minuteOfDeparture}} from <a href="https://www.google.com/maps/dir/{{requestRidePair.ride.startingLocation}},+Beograd+11000/{{requestRidePair.ride.destination}}/" target="_blank">{{requestRidePair.ride.startingLocation}} to {{requestRidePair.ride.destination}}</a></font> </mat-card-title>
+    <mat-card-title><font size="-1">Requested to join a ride: {{requestRidePair.ride.rideName}} on {{requestRidePair.ride.timeOfDeparture}}, {{requestRidePair.ride.hourOfDeparture}}:{{requestRidePair.ride.minuteOfDeparture}} from <a href="https://www.google.com/maps/dir/{{requestRidePair.ride.startingLocation}}{{this.RS.getMidLocations(requestRidePair.ride.passengers)}},+Beograd+11000/{{requestRidePair.ride.destination}}/" target="_blank">{{requestRidePair.ride.startingLocation}} to {{requestRidePair.ride.destination}}</a></font> </mat-card-title>
     <mat-card-subtitle>
     <div fxLayoutAlign="start center" fxLayout="row" routerLink="/profile" (click)="this.US.profileToShow=requestRidePair.requestedId">
       <a href="javascript:;">{{ this.US.getNameById(requestRidePair.requestedId) }}</a>

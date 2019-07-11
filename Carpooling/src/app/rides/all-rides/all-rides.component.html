@@ -94,7 +94,7 @@
     <ng-container matColumnDef="destination">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Destination</mat-header-cell>
     <mat-cell *matCellDef="let element">
-        <a href="https://www.google.com/maps/dir/{{element.startingLocation}},+Beograd+11000/{{element.destination}}/" target="_blank">{{ element.destination }}</a>
+        <a href="https://www.google.com/maps/dir/{{element.startingLocation}}{{this.RS.getMidLocations(element.passengers)}},+Beograd+11000/{{element.destination}}/" target="_blank">{{ element.destination }}</a>
     </mat-cell>
     </ng-container>
 
