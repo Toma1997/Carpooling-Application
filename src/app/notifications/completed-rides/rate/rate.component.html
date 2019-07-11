@@ -1,24 +1,24 @@
 <section *ngIf="this.US.getCurrentUser().typeOfUser == 'Passenger'" fxFlex FxLayout="column" fxLayoutGap="10px">
   <div FxLayout="row">
-    <p>Rate Driver: Pera Peric</p> <ng5-slider style="color:rgb(255, 72, 0);" [(value)]="value" [options]="options"></ng5-slider>
+    <p>Rate Driver: {{this.getDriverFullName()}}</p> <ng5-slider style="color:rgb(255, 72, 0);" [(value)]="this.driverRate" [options]="options"></ng5-slider>
   </div>
 
   <mat-card-actions fxLayoutAlign="center" fxLayoutGap="10px">
       <button type="submit" mat-stroked-button color="warn"
-      (click)="onClick()">CANCEL</button>
+      (click)="onCancel()">CANCEL</button>
       <button type="submit" mat-raised-button color="warn"
       (click)="onConfirm()">OK</button>
   </mat-card-actions>
 </section>
 
 <section *ngIf="this.US.getCurrentUser().typeOfUser == 'Driver'" fxFlex FxLayout="column" fxLayoutGap="10px">
-  <div *ngFor="let passenger of this.passengersOfThisRide()" FxLayout="row">
-    <p>Rate Passenger: Pera Peric</p> <ng5-slider style="color:rgb(255, 72, 0);" [(value)]="value" [options]="options"></ng5-slider>
+  <div *ngFor="let passengerPairIndex of this.passengersOfThisRide()" FxLayout="row">
+    <p>Rate Passenger: {{passengerPairIndex.passenger}}</p> <ng5-slider style="color:rgb(255, 72, 0);" [(value)]="this.passengersRates[passengerPairIndex.passengerIndex]" [options]="options"></ng5-slider>
   </div>
 
   <mat-card-actions fxLayoutAlign="center" fxLayoutGap="10px">
       <button type="submit" mat-stroked-button color="warn"
-      (click)="onClick()">CANCEL</button>
+      (click)="onCancel()">CANCEL</button>
       <button type="submit" mat-raised-button color="warn"
       (click)="onConfirm()">OK</button>
   </mat-card-actions>

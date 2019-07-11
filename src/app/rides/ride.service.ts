@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { UserService } from "../auth/user.service";
 import { User } from "../auth/user.service";
 
@@ -28,9 +28,22 @@ export class RideService {
 
     private rides : Array<Ride> = [];
     public editingRideId: number;
+    public ratingRideId: number;
 
     getJSONdata(){
         this.http.get<Ride[]>("../../assets/json_db/rides.json").subscribe(data => this.rides = data);
+    }
+
+
+    httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Authorization': 'my-auth-token'
+        })
+      };
+
+    saveDataToJSON(){
+        this.http.post<Ride[]>("../../assets/json_db/rides.json", this.rides, this.httpOptions);
     }
 
     getRides() {

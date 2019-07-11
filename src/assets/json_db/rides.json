@@ -32,13 +32,27 @@
         "rideName": "Voznja za ispit", 
         "idDriver": 0, 
         "maxPassengers": 3, 
-        "requested": [1],  
-        "passengers": [2], 
+        "requested": [],  
+        "passengers": [1, 2], 
         "timeOfDeparture": "07/12/2019", 
         "hourOfDeparture": 14,
         "minuteOfDeparture": 17, 
         "startingLocation" : "Pozeska 65", 
         "destination" : "Kumodraska 261a", 
-        "status" : "in progress" 
+        "status" : "done" 
+    },
+    {
+        "id": 3, 
+        "rideName": "Voznja za kolokvijum", 
+        "idDriver": 0, 
+        "maxPassengers": 3, 
+        "requested": [],  
+        "passengers": [2, 1], 
+        "timeOfDeparture": "07/14/2019", 
+        "hourOfDeparture": 10,
+        "minuteOfDeparture": 49, 
+        "startingLocation" : "Kneza Viseslava 120", 
+        "destination" : "Kumodraska 261a", 
+        "status" : "done" 
     }
 ]

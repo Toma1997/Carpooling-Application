@@ -110,8 +110,6 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
     let rides = this.RS.getRides();
     let currentUser = this.US.getCurrentUser();
 
-    console.log(rides[id]);
-
     if(rides[id].status != "in progress"){
       return true;
     }

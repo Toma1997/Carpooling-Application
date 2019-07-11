@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 // import { AppComponent } from 'src/app/app.component';
 // import { Router } from "@angular/router";
@@ -51,6 +51,19 @@ export class UserService {
         this.http.get<User[]>("../../assets/json_db/users.json").subscribe(data => this.listOfUsers = data);
         this.http.get<Comment[]>("../../assets/json_db/comments.json").subscribe(data => this.listOfAllComments = data);
         this.http.get<Rating[]>("../../assets/json_db/rates.json").subscribe(data => this.listOfAllRatings = data);
+    }
+
+    httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Authorization': 'my-auth-token'
+        })
+      };
+
+    saveDataToJSON(){
+        this.http.post<User[]>("../../assets/json_db/users.json", this.listOfUsers, this.httpOptions);
+        this.http.post<Comment[]>("../../assets/json_db/comments.json", this.listOfAllComments, this.httpOptions);
+        this.http.post<Rating[]>("../../assets/json_db/rates.json", this.listOfAllRatings, this.httpOptions);
     }
 
 
@@ -138,13 +151,17 @@ export class UserService {
         }
         sum = sum/results.length;
         
-        final.push(sum);
+        final.push(sum.toFixed(2));
         final.push(results.length);
         return final;
     }
 
     addComment(idFrom:number, idTo:number, comment:string){
         this.listOfAllComments.push({idFrom,idTo,date: new Date(), comment})
+    }
+
+    addRating(idFrom: number, idTo: number, rating: number){
+        this.listOfAllRatings.push({idFrom, idTo, rating});
     }
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { UserService } from '../../../auth/user.service';
 import { Options } from 'ng5-slider';
+import { RideService } from 'src/app/rides/ride.service';
 
 @Component({
   selector: 'app-rate',
@@ -10,11 +11,12 @@ import { Options } from 'ng5-slider';
 })
 export class RateComponent implements OnInit {
 
-  constructor(private US: UserService, private dialogRef: MatDialogRef<RateComponent>) { }
+  constructor(private US: UserService, private RS: RideService, private dialogRef: MatDialogRef<RateComponent>) { }
 
 
   // ocena
-  value: number = 5;
+  driverRate: number = 3;
+  passengersRates: Array<number> = [];
 
   options: Options = {
     showTicksValues: true,
@@ -30,20 +32,39 @@ export class RateComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClick(){
+  onCancel(){
     this.dialogRef.close();   
   }
 
   onConfirm(){ 
-    // napraviti u UserService metodu za dodavanje jedne ocene u niz ocena
-    // idFrom - this.US.getCurrentUser().id , idTo - vozac (trenutni korisnik je putnik) ili niz putnika (korisnik je vozac),
+    let idFrom = this.US.getCurrentUser().id;
+    if(this.US.getCurrentUser().typeOfUser == "Driver"){ // oceni putnike
+
+      let ride = this.RS.getRides()[this.RS.ratingRideId];
+      for(let i = 0; i < ride.passengers.length; i++){
+        this.US.addRating(idFrom, ride.passengers[i], this.passengersRates[i]);
+      }
+      
+    } else { // oceni vozaca
+
+      let idTo = this.RS.getRideById(this.RS.ratingRideId).idDriver;
+      this.US.addRating(idFrom, idTo, this.driverRate);
+    }
     this.dialogRef.close();
   }
 
   passengersOfThisRide(){
     let result = []; // pribaviti niz putnika ako je vozac korisnik
-
+    let ride = this.RS.getRideById(this.RS.ratingRideId);
+    for(let i = 0; i < ride.passengers.length; i++){
+      this.passengersRates.push(3); // ubaci inicijalne vrednosti
+      result.push({passenger: this.US.getNameById(ride.passengers[i]), passengerIndex: i});
+    }
     return result;
+  }
+
+  getDriverFullName(){
+    return this.US.getNameById(this.RS.getRides()[this.RS.ratingRideId].idDriver);
   }
 
 }

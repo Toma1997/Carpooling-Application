@@ -16,7 +16,8 @@ export class CompletedRidesComponent implements OnInit {
   ngOnInit() {
   }
 
-  onRate(){
+  onRate(rideId: number){
+    this.RS.ratingRideId = rideId;
     const dialogRef = this.dialog.open(RateComponent);
   }
 

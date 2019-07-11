@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from '../app/auth/user.service';
 import { Router, ActivatedRoute } from "@angular/router";
 import { Location } from '@angular/common';
+import { RideService } from './rides/ride.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class AppComponent {
 
   route: string;
 
-  constructor(private US : UserService, location: Location, private router : Router) {
+  constructor(private US : UserService, private RS: RideService, location: Location, private router : Router) {
     router.events.subscribe((val) => {
       if(location.path() == ''){
         this.route = "Singidunum Carpooling";
@@ -40,6 +41,8 @@ export class AppComponent {
   }
 
   signOut(){
+    this.US.saveDataToJSON();
+    this.RS.saveDataToJSON();
     this.loggedIn = false;
   }
 
