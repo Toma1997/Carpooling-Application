@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.FileWriter;
 import java.io.IOException;
 
+@CrossOrigin // za cross domain komunikaciju, omogocuvanje komunikacije izmedju razlicitih domena
 @RestController
 public class CarpoolingService {
 
-    @CrossOrigin
     @PostMapping(path="/users")
     public void saveUsers(@RequestBody String jsonData){
       try (FileWriter file = new FileWriter("../Carpooling/src/assets/json_db/users.json")) {
@@ -22,7 +22,7 @@ public class CarpoolingService {
       }
     }
 
-    @CrossOrigin // za cross domain komunikaciju, omogocuvanje komunikacije izmedju razlicitih domena
+    
     @PostMapping(path="/comments")
     public void saveComments(@RequestBody String jsonData){
       try (FileWriter file = new FileWriter("../Carpooling/src/assets/json_db/comments.json")) {
@@ -33,7 +33,6 @@ public class CarpoolingService {
       }
     }
 
-    @CrossOrigin
     @PostMapping(path="/ratings")
     public void saveRatings(@RequestBody String jsonData){
       try (FileWriter file = new FileWriter("../Carpooling/src/assets/json_db/rates.json")) {
@@ -44,7 +43,6 @@ public class CarpoolingService {
       }
     }
 
-    @CrossOrigin
     @PostMapping(path="/rides")
     public void saveRides(@RequestBody String jsonData){
       try (FileWriter file = new FileWriter("../Carpooling/src/assets/json_db/rides.json")) {
