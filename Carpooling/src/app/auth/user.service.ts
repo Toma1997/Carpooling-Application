@@ -71,7 +71,7 @@ export class UserService {
             data  => { console.log("POST Request is successful ", data);},
             error  => {console.log("Error", error);}
             );
-        this.http.post<Rating[]>("http://localhost:8080/ratings", JSON.stringify(this.listOfAllRatings), this.httpOptions).subscribe(
+        this.http.post<Rating[]>("http://localhost:8080/rates", JSON.stringify(this.listOfAllRatings), this.httpOptions).subscribe(
             data  => { console.log("POST Request is successful ", data);},
             error  => {console.log("Error", error);}
             );
