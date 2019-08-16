@@ -19,20 +19,20 @@ export class ApprovedComponent implements OnInit {
 
   listCurrentUserApprovedRides(){
     var result = [];
-      let rides = this.RS.getRides();
-      let currentUserId = this.US.getCurrentUser().id;
+    let rides = this.RS.getRides();
+    let currentUserId = this.US.getCurrentUser().id;
 
-      for(let i = 0; i < rides.length; i++){
-        if(rides[i].status == "in progress"){
-          for(let j = 0; j < rides[i].passengers.length; j++){
-            if(rides[i].passengers[j] == currentUserId){
-              result.push(rides[i]);
-            }
+    for(let i = 0; i < rides.length; i++){
+      if(rides[i].status == "in progress"){
+        for(let j = 0; j < rides[i].passengers.length; j++){
+          if(rides[i].passengers[j] == currentUserId){
+            result.push(rides[i]);
           }
         }
-        
       }
-      return result;
+      
+    }
+    return result;
   }
 
 }

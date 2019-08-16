@@ -23,25 +23,25 @@ export class CompletedRidesComponent implements OnInit {
 
   listCurrentUserFinishedRides(){
     var result = [];
-      let rides = this.RS.getRides();
-      let currentUser = this.US.getCurrentUser();
+    let rides = this.getFilteredRides();
+    let currentUser = this.US.getCurrentUser();
 
-      for(let i = 0; i < rides.length; i++){
-        if(rides[i].status == "done"){
-          if(currentUser.typeOfUser == "Driver" && rides[i].idDriver == currentUser.id){ // kada je korisnik vozac prikazi samo kada je on vozio
-            result.push(rides[i]);
-          } else if(currentUser.typeOfUser == "Passenger") { // kada je korisnik putnik onda prikaze samo voznje gde je on bio vozen
-            for(let j = 0; j < rides[i].passengers.length; j++){
-              if(rides[i].passengers[j] == currentUser.id){
-                result.push(rides[i]);
-              }
+    for(let i = 0; i < rides.length; i++){
+      if(rides[i].status == "done"){
+        if(currentUser.typeOfUser == "Driver" && rides[i].idDriver == currentUser.id){ // kada je korisnik vozac prikazi samo kada je on vozio
+          result.push(rides[i]);
+        } else if(currentUser.typeOfUser == "Passenger") { // kada je korisnik putnik onda prikaze samo voznje gde je on bio vozen
+          for(let j = 0; j < rides[i].passengers.length; j++){
+            if(rides[i].passengers[j] == currentUser.id){
+              result.push(rides[i]);
             }
           }
-          
         }
         
       }
-      return result;
+      
+    }
+    return result;
   }
 
   getPassengers(rideId: number){
@@ -59,6 +59,15 @@ export class CompletedRidesComponent implements OnInit {
       }
     });
     return result;
+  }
+
+  // izbaci uklonjene voznje
+  getFilteredRides() {
+    let rides = this.RS.getRides();
+    for(let i = 0; i < this.RS.removingQueue.length; i++){
+      rides = rides.filter(ride => ride.id != this.RS.removingQueue[i]);
+    }
+    return rides;
   }
 
 }

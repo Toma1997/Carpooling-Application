@@ -14,7 +14,7 @@ export class RecievedRequestsComponent implements OnInit {
   private listOfRequests: Array<Object> = []; // sadrzace parove kao zahteve (id putnika, voznja)
 
   ngOnInit() {
-    let rides = this.RS.getRides(); 
+    let rides = this.getFilteredRides(); 
     let currentUser = this.US.getCurrentUser();
     for(let i = 0; i < rides.length; i++){
       if(rides[i].idDriver == currentUser.id && rides[i].requested.length > 0){
@@ -48,6 +48,15 @@ export class RecievedRequestsComponent implements OnInit {
       }
     }
     this.listOfRequests = temp; // azuriraj listu zahteva u templejtu
+  }
+
+  // izbaci uklonjene voznje
+  getFilteredRides() {
+    let rides = this.RS.getRides();
+    for(let i = 0; i < this.RS.removingQueue.length; i++){
+      rides = rides.filter(ride => ride.id != this.RS.removingQueue[i]);
+    }
+    return rides;
   }
   
 }

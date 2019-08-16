@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { UserService } from "../auth/user.service";
 import { User } from "../auth/user.service";
+import { MatTableDataSource } from '@angular/material';
 
 export interface Ride {
     id : number;
@@ -30,9 +31,10 @@ export class RideService {
     public editingRideId: number;
     public ratingRideId: number;
     public removingQueue: Array<number> = [];
+    public source: MatTableDataSource<Ride> = new MatTableDataSource<Ride>();
 
     getJSONdata(){
-        this.http.get<Ride[]>("../../assets/json_db/rides.json").subscribe(data => this.rides = data);
+        this.http.get<Ride[]>("../../assets/json_db/rides.json").subscribe(data => this.source.data = this.rides = data);
     }
 
 

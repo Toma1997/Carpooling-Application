@@ -16,7 +16,7 @@ import {EditRideComponent} from '../edit-ride/edit-ride.component';
   templateUrl: './all-rides.component.html',
   styleUrls: ['./all-rides.component.css']
 })
-export class AllRidesComponent implements OnInit, OnDestroy, AfterViewInit {
+export class AllRidesComponent implements OnInit, AfterViewInit {
 
   value: number = 0;
   highValue: number = 24;
@@ -72,7 +72,7 @@ export class AllRidesComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     
     this.rideToggle=true;
-    this.rideSource.data = this.RS.getRides();
+    this.rideSource.data = this.RS.source.data;
 
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: []
@@ -89,12 +89,6 @@ export class AllRidesComponent implements OnInit, OnDestroy, AfterViewInit {
     this.fifthFormGroup = this._formBuilder.group({
       fifthCtrl: []
     });
-  }
-
-  ngOnDestroy(){
-    if(this.RS.removingQueue.length > 0){
-      this.RS.removeRides();
-    }
   }
 
   // na klik Go dugmeta vozac zapocinje, a ako je putnik onda se samo prijavljuje za voznju
@@ -143,8 +137,9 @@ export class AllRidesComponent implements OnInit, OnDestroy, AfterViewInit {
 
   removeRide(rideId: number){
     this.RS.removingQueue.push(rideId); // put in queue for removing
-    this.rideSource.data = this.rideSource.data.filter((value,key)=>{
+    this.RS.source.data = this.rideSource.data.filter((value,key)=>{
       return value.id != rideId;});
+    this.rideSource.data = this.RS.source.data;
     this.rideSource._updateChangeSubscription(); 
   }
   

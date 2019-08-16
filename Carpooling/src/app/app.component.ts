@@ -42,6 +42,9 @@ export class AppComponent {
 
   signOut(){
     this.US.saveDataToJSON();
+    if(this.RS.removingQueue.length > 0){
+      this.RS.removeRides();
+    }
     this.RS.saveDataToJSON();
     this.loggedIn = false;
   }
