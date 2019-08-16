@@ -1,1 +1,99 @@
-[{"id":0,"rideName":"test voznja","idDriver":1,"maxPassengers":4,"requested":[],"passengers":[0],"timeOfDeparture":"07/01/2019, 05:19:36 PM","hourOfDeparture":17,"minuteOfDeparture":19,"startingLocation":"Trg Republike","destination":"Danijelova 32","status":"canceled"},{"id":1,"rideName":"Prevoz studenata","idDriver":2,"maxPassengers":4,"requested":[],"passengers":[1,0],"timeOfDeparture":"07/02/2019","hourOfDeparture":13,"minuteOfDeparture":17,"startingLocation":"Kalemegdan","destination":"Singidunum","status":"done"},{"id":2,"rideName":"Voznja za ispit","idDriver":0,"maxPassengers":3,"requested":[],"passengers":[1,2],"timeOfDeparture":"07/12/2019","hourOfDeparture":14,"minuteOfDeparture":17,"startingLocation":"Pozeska 65","destination":"Kumodraska 261a","status":"done"},{"id":3,"rideName":"Voznja za kolokvijum","idDriver":0,"maxPassengers":3,"requested":[],"passengers":[2,1],"timeOfDeparture":"07/14/2019","hourOfDeparture":10,"minuteOfDeparture":49,"startingLocation":"Kneza Viseslava 120","destination":"Kumodraska 261a","status":"in progress"},{"id":4,"rideName":"Jos jedna nova voznja","idDriver":0,"maxPassengers":5,"requested":[],"passengers":[],"timeOfDeparture":"2019-07-16T22:00:00.000Z","hourOfDeparture":15,"minuteOfDeparture":30,"startingLocation":"Ada Ciganlija","destination":"Kumodraska 261a","status":"in progress"}]
+[
+    {
+        "id": 0,
+        "rideName": "test voznja",
+        "idDriver": 1,
+        "maxPassengers": 4,
+        "requested": [],
+        "passengers": [
+            0
+        ],
+        "timeOfDeparture": "07/01/2019, 05:19:36 PM",
+        "hourOfDeparture": 17,
+        "minuteOfDeparture": 19,
+        "startingLocation": "Trg Republike",
+        "destination": "Danijelova 32",
+        "status": "canceled"
+    },
+    {
+        "id": 1,
+        "rideName": "Prevoz studenata",
+        "idDriver": 2,
+        "maxPassengers": 4,
+        "requested": [],
+        "passengers": [
+            1,
+            0
+        ],
+        "timeOfDeparture": "07/02/2019",
+        "hourOfDeparture": 13,
+        "minuteOfDeparture": 17,
+        "startingLocation": "Kalemegdan",
+        "destination": "Singidunum",
+        "status": "done"
+    },
+    {
+        "id": 2,
+        "rideName": "Voznja za ispit",
+        "idDriver": 0,
+        "maxPassengers": 3,
+        "requested": [],
+        "passengers": [
+            1,
+            2
+        ],
+        "timeOfDeparture": "07/12/2019",
+        "hourOfDeparture": 14,
+        "minuteOfDeparture": 17,
+        "startingLocation": "Pozeska 65",
+        "destination": "Kumodraska 261a",
+        "status": "done"
+    },
+    {
+        "id": 3,
+        "rideName": "Voznja za kolokvijum",
+        "idDriver": 0,
+        "maxPassengers": 3,
+        "requested": [
+            3
+        ],
+        "passengers": [
+            2,
+            1
+        ],
+        "timeOfDeparture": "07/14/2019",
+        "hourOfDeparture": 10,
+        "minuteOfDeparture": 49,
+        "startingLocation": "Kneza Viseslava 120",
+        "destination": "Kumodraska 261a",
+        "status": "in progress"
+    },
+    {
+        "id": 4,
+        "rideName": "Jos jedna nova voznja",
+        "idDriver": 0,
+        "maxPassengers": 5,
+        "requested": [],
+        "passengers": [],
+        "timeOfDeparture": "2019-07-16T22:00:00.000Z",
+        "hourOfDeparture": 15,
+        "minuteOfDeparture": 30,
+        "startingLocation": "Ada Ciganlija",
+        "destination": "Kumodraska 261a",
+        "status": "in progress"
+    },
+    {
+        "id": 5,
+        "rideName": "Voznja sa ispita u restoran",
+        "idDriver": 3,
+        "maxPassengers": 5,
+        "requested": [],
+        "passengers": [],
+        "timeOfDeparture": "2019-07-11T22:00:00.000Z",
+        "hourOfDeparture": 17,
+        "minuteOfDeparture": 45,
+        "startingLocation": "Danijelova 32a",
+        "destination": "Usce Nacionalna Klasa",
+        "status": "in progress"
+    }
+]

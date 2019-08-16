@@ -1,9 +1,6 @@
 package rs.ac.singidunum.servis;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,9 +9,10 @@ import java.io.IOException;
 @RestController
 public class CarpoolingService {
 
-    @PostMapping(path="/users")
-    public void saveUsers(@RequestBody String jsonData){
-      try (FileWriter file = new FileWriter("../Carpooling/src/assets/json_db/users.json")) {
+    @PostMapping(path="/{dataName}")
+    public void saveData(@PathVariable String dataName, @RequestBody String jsonData){
+        String filePath = "../Carpooling/src/assets/json_db/"+dataName+".json";
+      try (FileWriter file = new FileWriter(filePath)) {
         file.write(jsonData);
 
       } catch (IOException e) {
@@ -22,36 +20,6 @@ public class CarpoolingService {
       }
     }
 
-    
-    @PostMapping(path="/comments")
-    public void saveComments(@RequestBody String jsonData){
-      try (FileWriter file = new FileWriter("../Carpooling/src/assets/json_db/comments.json")) {
-        file.write(jsonData);
-
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
-
-    @PostMapping(path="/ratings")
-    public void saveRatings(@RequestBody String jsonData){
-      try (FileWriter file = new FileWriter("../Carpooling/src/assets/json_db/rates.json")) {
-        file.write(jsonData);
-
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
-
-    @PostMapping(path="/rides")
-    public void saveRides(@RequestBody String jsonData){
-      try (FileWriter file = new FileWriter("../Carpooling/src/assets/json_db/rides.json")) {
-        file.write(jsonData);
-
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
 
 }
 
