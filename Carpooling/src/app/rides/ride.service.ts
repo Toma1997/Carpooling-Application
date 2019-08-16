@@ -29,6 +29,7 @@ export class RideService {
     private rides : Array<Ride> = [];
     public editingRideId: number;
     public ratingRideId: number;
+    public removingQueue: Array<number> = [];
 
     getJSONdata(){
         this.http.get<Ride[]>("../../assets/json_db/rides.json").subscribe(data => this.rides = data);
@@ -55,7 +56,7 @@ export class RideService {
     }
 
     createRide(idDriver:number, rideName:string ,maxPassengers:number, timeOfDeparture : Date, hourOfDeparture : number, minuteOfDeparture : number, startingLocation : string, destination : string){
-        var id = this.rides.length;
+        var id = this.rides[length-1].id + 1;
 
 
         this.rides.push( {id: id, rideName : rideName ,idDriver: idDriver, maxPassengers: maxPassengers, requested: [], passengers : [],
@@ -85,9 +86,11 @@ export class RideService {
         return foundRide;
     }
 
-    removeRide(removingRideId: number) {
-        this.rides = this.rides.filter(ride => 
-            ride.id != removingRideId);
+    removeRides() {
+        while(this.removingQueue.length != 0){
+            let tempId = this.removingQueue.pop();
+            this.rides = this.rides.filter(ride => ride.id != tempId);
+        }
     }
     
     getMidLocations(ridePassengers: Array<number>){

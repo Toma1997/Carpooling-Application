@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, OnChanges, DoCheck, OnDestroy } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { RideService, Ride } from '../ride.service';
 import { UserService } from '../../auth/user.service';
@@ -16,7 +16,7 @@ import {EditRideComponent} from '../edit-ride/edit-ride.component';
   templateUrl: './all-rides.component.html',
   styleUrls: ['./all-rides.component.css']
 })
-export class AllRidesComponent implements OnInit, AfterViewInit {
+export class AllRidesComponent implements OnInit, OnDestroy, AfterViewInit {
 
   value: number = 0;
   highValue: number = 24;
@@ -91,6 +91,12 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
     });
   }
 
+  ngOnDestroy(){
+    if(this.RS.removingQueue.length > 0){
+      this.RS.removeRides();
+    }
+  }
+
   // na klik Go dugmeta vozac zapocinje, a ako je putnik onda se samo prijavljuje za voznju
   requestOrStartRide(ride: Ride){
     if(this.US.getCurrentUser().id == ride.idDriver){ // vozac je kliknuo Go
@@ -136,8 +142,10 @@ export class AllRidesComponent implements OnInit, AfterViewInit {
   }
 
   removeRide(rideId: number){
-    this.RS.removeRide(rideId);
-    this.ngOnInit();
+    this.RS.removingQueue.push(rideId); // put in queue for removing
+    this.rideSource.data = this.rideSource.data.filter((value,key)=>{
+      return value.id != rideId;});
+    this.rideSource._updateChangeSubscription(); 
   }
   
   
